@@ -1,0 +1,38 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #ff9af7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.loginlabel{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  font-size: large;
+}
+
+.name{
+  font-size: xxx-large;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+}
+
+.loginContainer{
+  background-color:rgb(93, 117, 197);
+  color: white;
+}
+
+.navBar{
+  background-color: rgb(93, 117, 197);
+  color: white;
+}
+
+
