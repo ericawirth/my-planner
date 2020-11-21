@@ -1,11 +1,14 @@
 import React from 'react';
 import '../App.css';
 import '../App.sass';
+import { Link, BrowserRouter, NavLink } from "react-router-dom";
 
 export default function NavbarComponent() {
     return (
         <div className="navBar">
-            <div className="name">MyPlanner.</div>
+            <div className="name">
+                My Planner.
+            </div>
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample"  href="#">
@@ -16,17 +19,22 @@ export default function NavbarComponent() {
             </div>
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start">
-                    <a className="navbar-item">
+
+                    <Link to="/" className="navbar-item"> 
                         Home
-      </a>
+                    </Link>
+
                     <a className="navbar-item">
                         Documentation
-      </a>
+          </a>
+                    <Link to="/todolist" className="navbar-item"> 
+                        Todo List
+                    </Link>
 
                     <div className="navbar-item has-dropdown is-hoverable">
                         <a className="navbar-link" href="#">
                             More
-        </a>
+          </a>
                         <div className="navbar-dropdown">
                             <a className="navbar-item" href="#">
                                 About
