@@ -85,9 +85,11 @@ export default function TodoView(props) {
       ));
     
       function addTask(task) {
-        const newTask = { id: "todo-" + nanoid(), subject: task.subject, taskName: task.name, 
+        console.log(task);
+        const newTask = { id: "todo-" + nanoid(), subject: task.subject, taskName: task.taskName, 
                         dueDate: task.dueDate, time: task.time, completed: false };
         setTasks([...tasks, newTask]);
+        console.log(newTask);
       }
     
     
@@ -107,7 +109,7 @@ export default function TodoView(props) {
         <div className="todoapp stack-large">
             <h2 className="label-wrapper">
                 <label htmlFor="todo-title" className="label__lg">
-                To-Do
+                <strong>To-Do</strong> 
                 </label>
             </h2>    
             <TodoForm addTask={addTask} />

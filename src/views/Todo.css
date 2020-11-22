@@ -9,7 +9,7 @@ input[type="text"] {
 body {
     width: 100%;
     margin: 0 auto;
-    color: #4d4d4d;
+    color: white;
   }
 .form-group > input[type="text"] {
     display: inline-block;
@@ -17,9 +17,10 @@ body {
   }
   .btn {
     padding: 0.8rem 1rem 0.7rem;
+    color: black;
     border: 0.2rem solid rgb(93, 117, 197);
     cursor: pointer;
-    text-transform: capitalize;
+    text-transform: uppercase;
   }
   .btn.toggle-btn {
     border-width: 2px;
@@ -32,15 +33,20 @@ body {
   }
   .btn__danger {
     color: #fff;
-    background-color: rgb(93, 117, 197);
-    border-color: rgb(93, 117, 197);
+    background-color: hsl(0, 0%, 21%);
+    border-color: hsl(0, 0%, 21%); 
   }
   .btn__filter {
     border-color: lightgrey;
   }
+
+  .btn_e_d {
+    width: 1%;
+  }
+
   .btn__primary {
     color: #fff;
-    background-color:rgb(93, 117, 197);
+    background-color:hsl(0, 0%, 21%);
   }
   .btn-group {
     display: flex;
