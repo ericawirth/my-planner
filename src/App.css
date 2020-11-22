@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+body{
+  height: 100%;
+}
 .App-header {
   background-color: #ff9af7;
   min-height: 100vh;
@@ -61,10 +63,10 @@
   font-size: large;
 }  
 
-.test  { 
-  height: 400px;
-}
 
 .fc-daygrid-day {
   overflow: hidden;
+}
+.modalError{
+  background-color: red;
 }
