@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
+/* eslint-disable jsx-a11y/anchor-is-valid */
 function usePrevious(value) {
     const ref = useRef();
     useEffect(() => {

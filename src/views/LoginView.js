@@ -12,7 +12,7 @@ export default function LoginView() {
                             <h1 className="title">Welcome,</h1>
                             <h2 className="subtitle">Please login to access your planner!</h2>
                             <figure className="image is-3by1">
-                            <img src="https://bulma.io/images/placeholders/640x480.png"></img>
+                                <img src="https://bulma.io/images/placeholders/640x480.png"></img>
                             </figure>
                         </div>
                         <div className="tile is-child notification is-warning">

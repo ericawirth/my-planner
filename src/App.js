@@ -9,7 +9,6 @@ import NotFound from './views/NotFoundView';
 import Home from './HomeView';
 import CalendarView from './views/CalendarView'
 import NavbarComponent from './components/NavbarComponent'
-
 const DATA = [
   { id: "todo-0", subject: "Food", taskName: "Eat", dueDate: "2020-11-26", completed: true },
   { id: "todo-1", subject: "Life", taskName: "Sleep", completed: false },
