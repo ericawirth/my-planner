@@ -133,7 +133,7 @@ export default function Calendar() {
             <div className="calendar">
                 <FullCalendar
                     plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
-                    initialView='timeGridWeek'
+                    initialView='dayGridMonth'
                     dateClick={handleDateClick}
                     selectable={true}
                     editable={true}
@@ -155,7 +155,7 @@ function renderEventContent(eventInfo) {
     return (
         <>
             <b>{eventInfo.timeText}</b>
-            <i>{eventInfo.event.title}</i>
+            <i className="eventOverflow">{eventInfo.event.title}</i>
         </>
     )
 }

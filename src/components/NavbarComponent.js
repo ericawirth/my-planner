@@ -18,29 +18,23 @@ export default function NavbarComponent() {
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-start">
                         <a className="navbar-item">
-                            Dashboard
-      </a>
-                        <a className="navbar-item">
                             Calendar
-      </a>
+                        </a>
                         <a className="navbar-item">
                             To-Do List
-      </a>
-                        <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link" href="#">
-                                My Account
-        </a>
-                            <div className="navbar-dropdown">
-                                <a className="navbar-item" href="#">
-                                    Profile
-          </a>
-                                <a className="navbar-item" href="#">
-                                    Log Out
-          </a>
-                                <a className="navbar-item" href="#">
-                                    Report an issue
-          </a>
-                            </div>
+                        </a>
+                    </div>
+                    <div className="navbar-item has-dropdown is-hoverable">
+                        <a className="navbar-link" href="#">
+                            My Account
+                            </a>
+                        <div className="navbar-dropdown">
+                            <a className="navbar-item" href="#">
+                                Profile
+                                </a>
+                            <a className="navbar-item" href="#">
+                                Log Out
+                                </a>
                         </div>
                     </div>
                 </div>
