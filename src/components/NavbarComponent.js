@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import '../App.sass';
+import { Link, BrowserRouter, NavLink } from "react-router-dom";
 
 export default function NavbarComponent() {
     return (

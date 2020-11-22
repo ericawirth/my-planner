@@ -43,20 +43,13 @@
   color: white;
 }
 
-.loginchunk{
-  font-size: xx-large;
+.calendar{
+  margin: 4px 100px;
 }
 
-.signupchunk{
-  font-size: x-small;
-}
-
-.checkbox{
-  font-size: small;
-}
-
-.container{
-  display: flex;
+.title {
+  margin-top: 2%;
+  margin-left: 1%;
 }
 
 .input{
