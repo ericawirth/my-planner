@@ -1,39 +1,124 @@
 import React, { useState } from 'react';
+import DatePicker from "react-datepicker";
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from "@fullcalendar/interaction"
-
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default function Calendar() {
     const [event, setEvent] = useState([{ title: 'Smoke & Turkey with KMP', date: '2020-11-24' }]);
     const [modalState, setmodalState] = useState(false)
-
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [startTime, setStartTime] = useState(new Date());
+    const [endTime, setEndTime] = useState(new Date());
     const handleDateClick = (arg) => {
-        return (setEvent(oldArray => [...oldArray, { title: ' test ', date: arg.dateStr }]));
+        let date = new Date(arg.date);
+        setStartDate(date);
+        setEndDate(date);
+        setStartTime(date);
+        setEndTime(date);
+        toggleModal();
+        console.log(date.getHours());
+
+        /*
+        return (
+            setEvent(oldArray => [...oldArray, { title: ' test ', date: arg.dateStr, backgroundColor: 'red' }])
+        );*/
     }
-    const Modal = ({ children, closeModal, title }) => {
-        console.log(modalState);
+    const Modal = () => {
         if (!modalState) {
             return null;
         }
-        console.log("HERE");
-
         return (
             <div className="modal is-active">
-                <div className="modal-background" onClick={closeModal} />
-                <div className="modal-card">
-                    <header className="modal-card-head">
-                        <p className="modal-card-title">{title}</p>
-                        <button className="delete" onClick={closeModal} />
+                <div className="" onClick={toggleModal} />
+                <div className="modal-card p-9">
+                    <header className="modal-card-head p-2">
+                        <p className="modal-card-title "></p>
+                        <button className="delete" onClick={toggleModal} />
                     </header>
-                    <section className="modal-card-body">
+                    <section className="modal-card-body test">
                         <div className="content">
-                            {children}
+                            <div className="field">
+                                <div className="control">
+                                    <input className="input is-primary" type="text" placeholder="Add a title" />
+                                </div>
+                            </div>
+                            <div className="field">
+                                <p className="control  ">
+                                    <span className="select">
+                                        <select>
+                                            <option>Event</option>
+                                            <option>Todo</option>
+                                        </select>
+                                    </span>
+                                </p>
+                            </div>
+
+                            <div className="field">
+                                <p>Date</p>
+                                <div>
+                                    <DatePicker
+                                        selected={startDate}
+                                        onChange={date => setStartDate(date)}
+                                        selectsStart
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                    />
+                                </div>
+                                <div>
+                                    <DatePicker
+                                        selected={endDate}
+                                        onChange={date => setEndDate(date)}
+                                        selectsEnd
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                        minDate={startDate}
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="control">
+                                    <label class="checkbox">
+                                        <input type="checkbox" /> 
+                                             <a> All Day</a>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div className="field">
+                                <div>
+                                    <DatePicker
+                                        selected={startTime}
+                                        onChange={time => setStartTime(time)}
+                                        showTimeSelect
+                                        showTimeSelectOnly
+                                        timeIntervals={15}
+                                        timeCaption="Time"
+                                        dateFormat="h:mm aa"
+                                    />
+                                </div>
+                                <div>
+                                    <DatePicker
+                                        selected={endTime}
+                                        onChange={time => setEndTime(time)}
+                                        showTimeSelect
+                                        showTimeSelectOnly
+                                        timeIntervals={15}
+                                        timeCaption="Time"
+                                        dateFormat="h:mm aa"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </section>
-                    <footer className="modal-card-foot">
-                        <a className="button" onClick={closeModal}>Cancel</a>
+                    <footer className="modal-card-foot p-1">
+                        <div className="control">
+                            <button className="button is-small is-primary ml-4">Save</button>
+                        </div>
                     </footer>
                 </div>
             </div>
@@ -44,20 +129,8 @@ export default function Calendar() {
     }
     return (
         <div>
-             <Modal
-                    closeModal={toggleModal}
-                    title="Example modal title"
-                >
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet justo in arcu efficitur malesuada nec ut diam. Aenean a iaculis eros. Proin nec purus congue, rutrum sapien id, sodales ante. Nam imperdiet sapien pretium leo dapibus euismod. Ut ac venenatis nunc. Praesent viverra purus vel lacus ullamcorper porta a a augue. Proin rhoncus tempus leo sed ultricies. In luctus aliquam placerat. Cras efficitur enim vitae vulputate consequat. Nulla tellus est, fringilla quis nisi eu, aliquam finibus eros.</p>
-                    <p>Aliquam est dui, varius eu tempor ac, ornare vel magna. Suspendisse potenti. Nullam gravida fermentum turpis, at ultricies risus bibendum sit amet. Nulla et arcu id nisi semper ullamcorper cursus sed magna. Phasellus pulvinar ligula vehicula consequat sagittis. Donec tristique tellus sed ex euismod ullamcorper. Vivamus nibh metus, scelerisque sed lorem eget, auctor lobortis sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin congue auctor diam, efficitur dignissim neque. Pellentesque vitae odio ut odio auctor feugiat. Curabitur eget mauris nibh. Vestibulum massa nunc, iaculis at purus venenatis, mollis tincidunt tortor.</p>
-                </Modal>
+            <Modal />
             <div className="calendar">
-                <a className="button is-primary" onClick={toggleModal}>
-                    Open Modal
-            </a>
-
-               
-
                 <FullCalendar
                     plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
                     initialView='timeGridWeek'
