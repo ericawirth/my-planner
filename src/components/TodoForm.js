@@ -1,20 +1,43 @@
-import React, { useState } from 'react';
-import { useTasks } from './TodoTaskProvider';
+import React, { useState } from "react";
 
-export default function NewTaskForm() {
-  const [task, setTask] = useState('');
-  const { addTask } = useTasks();
+export default function TodoForm(props) {
+  const [name, setName] = useState('');
 
-  const submit = e => {
-    e.preventDefault()
-    addTask(task)
-    setTask('')
-  };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!name.trim()) {
+      return;
+    }
+    props.addTask(name);
+    setName("");
+  }
+
+
+  function handleChange(e) {
+    setName(e.target.value);
+  }
 
   return (
-    <form onSubmit={submit}>
-      <input type="text" value={task} placeholder="Get some eggs..." onChange={e => setTask(e.target.value)} required />
-      <button>Add</button>
+    <form onSubmit={handleSubmit}>
+      <h2 className="label-wrapper">
+        <label htmlFor="new-todo-input" className="label__lg">
+          What needs to be done?
+        </label>
+      </h2>
+
+      <input
+        type="text"
+        id="new-todo-input"
+        className="input input__lg"
+        name="text"
+        autoComplete="off"
+        value={name}
+        onChange={handleChange}
+      />
+      <button type="submit" className="btn btn__primary btn__lg">
+        Add
+      </button>
     </form>
   );
-};
+}
