@@ -16,7 +16,15 @@
 .loginlabel{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
+  font-size: xx-large;
+  text-decoration: underline;
+}
+
+.signuplabel{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
   font-size: large;
+  text-decoration: underline;
 }
 
 .name{
@@ -35,4 +43,27 @@
   color: white;
 }
 
+.loginchunk{
+  font-size: xx-large;
+}
 
+.signupchunk{
+  font-size: x-small;
+}
+
+.checkbox{
+  font-size: small;
+}
+
+.container{
+  display: flex;
+}
+
+.input{
+  max-width: 50px;
+}
+
+.label1{
+  color: white;
+  font-size: large;
+}

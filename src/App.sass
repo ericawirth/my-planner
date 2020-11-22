@@ -1,34 +1,28 @@
 @charset "utf-8"
 
 // Set your brand colors
-$purple: #8a4d76
+$limegreen: #34d1a0
 $pink: #fa7c91
-$brown: #757763
-$beige-light: #d0d1cd
-$beige-lighter: #eff0eb
+$brown: #7d848a
+$blue-light: #5d75c5
+$blue-lighter: #8ea4ed
+$macaroni: #e6b045
 
 // Update Bulma's global variables
 $family-sans-serif: 'Nunito', sans-serif
 $grey-dark: $brown
-$grey-light: $beige-light
-$primary: $purple
+$grey-light: $blue-light
+$primary: $limegreen
 $link: $pink
+$warning: $macaroni
 $widescreen-enabled: false
 $fullhd-enabled: false
 
 // Update some of Bulma's component variables
-$body-background-color: $beige-lighter
+$body-background-color: $blue-light
 $control-border-width: 2px
 $input-border-color: transparent
 $input-shadow: none
 
 // Import only what you need from Bulma
-@import '../node_modules/bulma/sass/utilities/_all.sass'
-@import '../node_modules/bulma/sass/base/_all.sass'
-@import '../node_modules/bulma/sass/elements/button.sass'
-@import '../node_modules/bulma/sass/elements/container.sass'
-@import '../node_modules/bulma/sass/elements/form.sass'
-@import '../node_modules/bulma/sass/elements/title.sass'
-@import '../node_modules/bulma/sass/components/navbar.sass'
-@import '../node_modules/bulma/sass/layout/hero.sass'
-@import '../node_modules/bulma/sass/layout/section.sass'
+@import '../node_modules/bulma/bulma.sass'
