@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import '../App.sass';
 import { Link, BrowserRouter, NavLink } from "react-router-dom";
-
+/* eslint-disable jsx-a11y/anchor-is-valid */
 export default function NavbarComponent() {
     return (
         <div className="navBar">
@@ -17,30 +17,24 @@ export default function NavbarComponent() {
                 </div>
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-start">
-                        <a className="navbar-item">
-                            Dashboard
-      </a>
-                        <a className="navbar-item">
+                        <a className="navbar-item" href="/calendar">
                             Calendar
-      </a>
-                        <a className="navbar-item">
+                        </a>
+                        <a className="navbar-item" href="/todolist">
                             To-Do List
-      </a>
-                        <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link" href="#">
-                                My Account
-        </a>
-                            <div className="navbar-dropdown">
-                                <a className="navbar-item" href="#">
-                                    Profile
-          </a>
-                                <a className="navbar-item" href="#">
-                                    Log Out
-          </a>
-                                <a className="navbar-item" href="#">
-                                    Report an issue
-          </a>
-                            </div>
+                        </a>
+                    </div>
+                    <div className="navbar-item has-dropdown is-hoverable">
+                        <a className="navbar-link" href="#">
+                            My Account
+                            </a>
+                        <div className="navbar-dropdown">
+                            <a className="navbar-item" href="#">
+                                Profile
+                                </a>
+                            <a className="navbar-item" href="#">
+                                Log Out
+                                </a>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export default function TodoForm(props) {
+  
   const [task, setTask] = useState({
         subject: "",
         taskName: "",
@@ -13,19 +14,18 @@ export default function TodoForm(props) {
     if (!task.taskName.trim()) {
       return;
     }
-    console.log("here");
     props.addTask(task);
-    setTask({}); 
+    //setTask({}); 
   }
 
 
   function handleChange(e) {
     const value = (e.target.value);
-    console.log(value);
     setTask({
         ...task,
         [e.target.name]: value
     });
+    console.log(task);
   }
 
   return (
@@ -69,7 +69,7 @@ export default function TodoForm(props) {
         onChange={handleChange}
       />
 
-      <button type="submit" className="btn btn__primary btn__lg">
+      <button type="submit" className="btn btn__primary btn__lg button-is-dark">
         Add
       </button>
     </form>

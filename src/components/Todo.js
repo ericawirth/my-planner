@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
+/* eslint-disable jsx-a11y/anchor-is-valid */
 function usePrevious(value) {
     const ref = useRef();
     useEffect(() => {
@@ -72,21 +72,21 @@ function usePrevious(value) {
               onChange={() => props.toggleTaskCompleted(props.id)}
             />
             <label className="todo-label" htmlFor={props.id}>
-                <strong>{props.subject}:</strong> {props.taskName} {props.dueDate}
+                <strong>{props.subject}:</strong> {props.taskName}
             </label>
           </div>
           <div className="btn-group">
           <button
             type="button"
-            className="btn"
+            className="btn btn_e_d"
             onClick={() => setEditing(true)}
             ref={editButtonRef}
             >
-              Edit
+              EDIT
             </button>
             <button
               type="button"
-              className="btn btn__danger"
+              className="btn btn__danger btn_e_d"
               onClick={() => props.deleteTask(props.id)}
             >
               Delete
@@ -104,7 +104,6 @@ function usePrevious(value) {
         editButtonRef.current.focus();
       }
     }, [wasEditing, isEditing]);
-  
   
     return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
   }
