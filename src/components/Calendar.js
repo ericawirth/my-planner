@@ -34,10 +34,11 @@ export default function Calendar() {
         setnewEvent({
             ...newEvent,
             id: id,
+            allDay: true,
             startDate: date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2),
             endDate: date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2),
             startTime: ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2),
-            endTime: ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2)
+            endTime: ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()+15).slice(-2)
         });
         setmodalError("");
         toggleModal();
@@ -182,7 +183,7 @@ export default function Calendar() {
                                     setmodalError("Set A Title")
                                 }
                                 else if(newEvent.allDay){                                    
-                                    setEvent(oldArray => [...oldArray, {id:newEvent.id, title: titleText, start: newEvent.startDate}]);
+                                    setEvent(oldArray => [...oldArray, {id:newEvent.id, title: titleText, start: newEvent.startDate, end: newEvent.endDate}]);
                                     toggleModal();
                                 }
                                 else{
@@ -217,6 +218,7 @@ export default function Calendar() {
                     initialView='dayGridMonth'
                     dateClick={handleDateClick}
                     eventClick={handleEventClick}
+                    nextDayThreshold={'00:00:00'}
                     selectable={true}
                     editable={true}
                     eventContent={renderEventContent}
@@ -236,8 +238,10 @@ export default function Calendar() {
 function renderEventContent(eventInfo) {
     return (
         <>
+            <div className="eventOverflow">
             <b>{eventInfo.timeText}</b>
-            <i className="eventOverflow">{eventInfo.event.title}</i>
+            <i>{eventInfo.event.title}</i>
+            </div>
         </>
     )
 }
