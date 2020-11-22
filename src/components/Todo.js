@@ -54,11 +54,9 @@ function usePrevious(value) {
             onClick={() => setEditing(false)}
           >
             Cancel
-            <span className="visually-hidden">renaming {props.name}</span>
           </button>
           <button type="submit" className="btn btn__primary todo-edit">
             Save
-            <span className="visually-hidden">new name for {props.name}</span>
           </button>
         </div>
       </form>
@@ -74,7 +72,7 @@ function usePrevious(value) {
               onChange={() => props.toggleTaskCompleted(props.id)}
             />
             <label className="todo-label" htmlFor={props.id}>
-              {props.name}
+                <strong>{props.subject}:</strong> {props.taskName} {props.dueDate}
             </label>
           </div>
           <div className="btn-group">
@@ -84,14 +82,14 @@ function usePrevious(value) {
             onClick={() => setEditing(true)}
             ref={editButtonRef}
             >
-              Edit <span className="visually-hidden">{props.name}</span>
+              Edit
             </button>
             <button
               type="button"
               className="btn btn__danger"
               onClick={() => props.deleteTask(props.id)}
             >
-              Delete <span className="visually-hidden">{props.name}</span>
+              Delete
             </button>
           </div>
       </div>

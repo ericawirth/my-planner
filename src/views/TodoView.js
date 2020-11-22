@@ -63,7 +63,10 @@ export default function TodoView(props) {
     .map(task => (
         <Todo
         id={task.id}
-        name={task.name}
+        subject={task.subject}
+        taskName={task.taskName}
+        dueDate={task.dueDate}
+        time={task.time} 
         completed={task.completed}
         key={task.id}
         toggleTaskCompleted={toggleTaskCompleted}
@@ -81,8 +84,9 @@ export default function TodoView(props) {
         />
       ));
     
-      function addTask(name) {
-        const newTask = { id: "todo-" + nanoid(), name: name, completed: false };
+      function addTask(task) {
+        const newTask = { id: "todo-" + nanoid(), subject: task.subject, taskName: task.name, 
+                        dueDate: task.dueDate, time: task.time, completed: false };
         setTasks([...tasks, newTask]);
       }
     
@@ -101,7 +105,12 @@ export default function TodoView(props) {
 
     return (
         <div className="todoapp stack-large">
-        <TodoForm addTask={addTask} />
+            <h2 className="label-wrapper">
+                <label htmlFor="todo-title" className="label__lg">
+                To-Do
+                </label>
+            </h2>    
+            <TodoForm addTask={addTask} />
         <div className="filters btn-group stack-exception">
             {filterList}
         </div>

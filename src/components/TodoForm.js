@@ -1,40 +1,74 @@
 import React, { useState } from "react";
 
 export default function TodoForm(props) {
-  const [name, setName] = useState('');
-
+  const [task, setTask] = useState({
+        subject: "",
+        taskName: "",
+        dueDate: "",
+        time: "",
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!name.trim()) {
+    if (!task.taskName.trim()) {
       return;
     }
-    props.addTask(name);
-    setName("");
+    console.log("here");
+    props.addTask(task);
+    setTask({}); 
   }
 
 
   function handleChange(e) {
-    setName(e.target.value);
+    const value = (e.target.value);
+    console.log(value);
+    setTask({
+        ...task,
+        [e.target.name]: value
+    });
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="label-wrapper">
-        <label htmlFor="new-todo-input" className="label__lg">
-          What needs to be done?
-        </label>
-      </h2>
-
       <input
         type="text"
-        id="new-todo-input"
+        id="new-todo-subject"
         className="input input__lg"
-        name="text"
-        autoComplete="off"
-        value={name}
+        name="subject"
+        autoComplete="on"
+        value={task.subject}
+        placeholder="Subject"
         onChange={handleChange}
       />
+      <input
+        type="text"
+        id="new-todo-task"
+        className="input input__lg"
+        name="taskName"
+        autoComplete="on"
+        value={task.taskName}
+        placeholder="Task"
+        onChange={handleChange}
+      />
+      <input
+        type="date"
+        id="new-todo-date"
+        className="input input__lg"
+        name="dueDate"
+        autoComplete="off"
+        value={task.dueDate}
+        onChange={handleChange}
+      />
+      <input
+        type="time"
+        id="new-todo-time"
+        className="input input__lg"
+        name="time"
+        autoComplete="off"
+        value={task.time}
+        onChange={handleChange}
+      />
+
       <button type="submit" className="btn btn__primary btn__lg">
         Add
       </button>
