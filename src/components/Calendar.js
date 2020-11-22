@@ -8,10 +8,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar() {
-    const [event, setEvent] = useState([{id:0, title: 'Smoke & Turkey with KMP', date: '2020-11-24' }]);
+    const [event, setEvent] = useState([{ id: 0, title: 'Smoke & Turkey with KMP', date: '2020-11-24' }]);
     const [modalError, setmodalError] = useState(false);
     const [modalState, setmodalState] = useState(false);
-    const [DeleteEvent, setDeleteEvent] = useState(false);
+    const [ExistingEvent, setExistingEvent] = useState(false);
     const [newEvent, setnewEvent] = useState({
         title: "",
         eventType: "Event",
@@ -25,11 +25,11 @@ export default function Calendar() {
 
     const handleDateClick = (arg) => {
         titleText = "";
-        setDeleteEvent(false); 
+        setExistingEvent(false);
         let date = new Date(arg.date);
         let id = 0;
-        if(event.length>0){
-            id = event[event.length-1].id + 1;
+        if (event.length > 0) {
+            id = event[event.length - 1].id + 1;
         }
         setnewEvent({
             ...newEvent,
@@ -38,14 +38,14 @@ export default function Calendar() {
             startDate: date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2),
             endDate: date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2),
             startTime: ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2),
-            endTime: ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()+15).slice(-2)
+            endTime: ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes() + 15).slice(-2)
         });
         setmodalError("");
         toggleModal();
     }
 
-    const handleEventClick = (arg) => {  
-        setDeleteEvent(true);      
+    const handleEventClick = (arg) => {
+        setExistingEvent(true);
         let startDate = new Date(arg.event.start);
         let endDate = new Date(arg.event.end);
         titleText = arg.event.title;
@@ -54,11 +54,11 @@ export default function Calendar() {
             ...newEvent,
             id: arg.event.id,
             title: arg.event.title,
-            allDay:  arg.event.end? false: true,
+            allDay: arg.event.end ? false : true,
             startDate: startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2),
-            endDate: arg.event.end ? endDate.getFullYear() + '-' + ("0" + (endDate.getMonth() + 1)).slice(-2) + '-' + ("0" + endDate.getDate()).slice(-2): startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2),
+            endDate: arg.event.end ? endDate.getFullYear() + '-' + ("0" + (endDate.getMonth() + 1)).slice(-2) + '-' + ("0" + endDate.getDate()).slice(-2) : startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2),
             startTime: ("0" + startDate.getHours()).slice(-2) + ':' + ("0" + startDate.getMinutes()).slice(-2),
-            endTime: arg.event.end ? ("0" + endDate.getHours()).slice(-2) + ':' + ("0" + endDate.getMinutes()).slice(-2): "",
+            endTime: arg.event.end ? ("0" + endDate.getHours()).slice(-2) + ':' + ("0" + endDate.getMinutes()).slice(-2) : "",
         });
         setmodalError("");
         toggleModal();
@@ -72,6 +72,32 @@ export default function Calendar() {
             ...newEvent,
             [e.target.name]: value,
         });
+    }
+
+    function addEvent(){
+        setnewEvent({
+            ...newEvent,
+            title: titleText,
+        });
+        if (titleText === "") {
+            setmodalError("Set A Title")
+        }
+        else if (newEvent.allDay) {
+            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate, end: newEvent.endDate }]);
+            toggleModal();
+        }
+        else {
+            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate + 'T' + newEvent.startTime, end: newEvent.endDate + 'T' + newEvent.endTime }]);
+            toggleModal();
+        }
+    }
+
+    function deleteEvent(){
+        let eventsArr = event.filter(e => {
+            return e.id != newEvent.id;
+        });
+        setEvent(eventsArr);
+        toggleModal();
     }
     const ShowTime = () => (
         <div className="field">
@@ -116,7 +142,7 @@ export default function Calendar() {
                             <div className="modalError">{modalError}</div>
                             <div className="field">
                                 <div className="control">
-                                    <input className="input is-primary" defaultValue={titleText} name="title" type="text" placeholder="Add a title" onChange={e =>{titleText = e.target.value.trim(); setmodalError("")}} />
+                                    <input className="input is-primary" defaultValue={titleText} name="title" type="text" placeholder="Add a title" onChange={e => { titleText = e.target.value.trim(); setmodalError("") }} />
                                 </div>
                             </div>
                             <div className="field">
@@ -174,32 +200,21 @@ export default function Calendar() {
                     </section>
                     <footer className="modal-card-foot p-1">
                         <div className="control">
-                            <button className="button is-small is-primary ml-4" onClick={e => {
-                                setnewEvent({
-                                    ...newEvent,
-                                    title: titleText,
-                                });
-                                if(titleText === ""){
-                                    setmodalError("Set A Title")
-                                }
-                                else if(newEvent.allDay){                                    
-                                    setEvent(oldArray => [...oldArray, {id:newEvent.id, title: titleText, start: newEvent.startDate, end: newEvent.endDate}]);
-                                    toggleModal();
-                                }
-                                else{
-                                    setEvent(oldArray => [...oldArray, {id:newEvent.id, title: titleText, start: newEvent.startDate+'T'+newEvent.startTime, end: newEvent.endDate+'T'+newEvent.endTime}]);
-                                    toggleModal();
-                                }
-                            }}>Save</button>
-                            {DeleteEvent ? <button className="button is-small is-danger ml-4" onClick={e => {
-                                    let eventsArr = event.filter(e => { 
-                                        return e.id != newEvent.id;
-                                    });
-                                    setEvent(eventsArr);
-                                    toggleModal();
-                                }
+                            {ExistingEvent ?
+                                <button className="button is-small is-primary ml-4" onClick={e => {
+                                    deleteEvent();
+                                    addEvent();
+                                }}>Update</button> :
+                                //ELSE
+                                <button className="button is-small is-primary ml-4" onClick={e => {
+                                    addEvent();
+                                }}>Save</button>
+                            }
+                            {ExistingEvent ? <button className="button is-small is-danger ml-4" onClick={e => {
+                                deleteEvent();
+                            }
                             }>Delete</button> : null}
-                            
+
                         </div>
                     </footer>
                 </div>
@@ -239,8 +254,8 @@ function renderEventContent(eventInfo) {
     return (
         <>
             <div className="eventOverflow">
-            <b>{eventInfo.timeText}</b>
-            <i>{eventInfo.event.title}</i>
+                <b>{eventInfo.timeText}</b>
+                <i>{eventInfo.event.title}</i>
             </div>
         </>
     )
