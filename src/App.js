@@ -7,6 +7,7 @@ import './App.sass'
 import TodoView from './views/TodoView'; 
 import NotFound from './views/NotFoundView';
 import Home from './HomeView';
+import CalendarView from './views/CalendarView'
 import NavbarComponent from './components/NavbarComponent'
 
 const DATA = [
@@ -23,6 +24,7 @@ function App() {
         <NavbarComponent/>
           <Switch>
             <Route exact path="/" component={Home}/>
+            <Route exact path="/calendar" component={CalendarView}/>
             <Route exact path="/todolist" render={() => <TodoView tasks={DATA} />}/>
           </Switch>
     </div>

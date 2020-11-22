@@ -17,10 +17,10 @@ export default function NavbarComponent() {
                 </div>
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-start">
-                        <a className="navbar-item">
+                        <a className="navbar-item" href="/calendar">
                             Calendar
                         </a>
-                        <a className="navbar-item">
+                        <a className="navbar-item" href="/todolist">
                             To-Do List
                         </a>
                     </div>
