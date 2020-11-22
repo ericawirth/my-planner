@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import DatePicker from "react-datepicker";
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -34,7 +33,7 @@ export default function Calendar() {
         setnewEvent({
             ...newEvent,
             id: id,
-            allDay: true,
+            allDay: true,            
             startDate: date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2),
             endDate: date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2),
             startTime: ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2),
@@ -54,6 +53,7 @@ export default function Calendar() {
             ...newEvent,
             id: arg.event.id,
             title: arg.event.title,
+            eventType: arg.event.extendedProps.eventType ? arg.event.extendedProps.eventType : "Event",
             allDay: arg.event.end ? false : true,
             startDate: startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2),
             endDate: arg.event.end ? endDate.getFullYear() + '-' + ("0" + (endDate.getMonth() + 1)).slice(-2) + '-' + ("0" + endDate.getDate()).slice(-2) : startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2),
@@ -66,7 +66,7 @@ export default function Calendar() {
 
     function handleChange(e) {
         let value = (e.target.value);
-        if (e.target.name == "allDay")
+        if (e.target.name === "allDay")
             value = e.target.checked
         setnewEvent({
             ...newEvent,
@@ -83,18 +83,18 @@ export default function Calendar() {
             setmodalError("Set A Title")
         }
         else if (newEvent.allDay) {
-            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate, end: newEvent.endDate }]);
+            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate, end: newEvent.endDate, eventType: newEvent.eventType}]);
             toggleModal();
         }
         else {
-            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate + 'T' + newEvent.startTime, end: newEvent.endDate + 'T' + newEvent.endTime }]);
+            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate + 'T' + newEvent.startTime, end: newEvent.endDate + 'T' + newEvent.endTime, eventType: newEvent.eventType}]);
             toggleModal();
         }
     }
 
     function deleteEvent(){
         let eventsArr = event.filter(e => {
-            return e.id != newEvent.id;
+            return e.id !== newEvent.id;
         });
         setEvent(eventsArr);
         toggleModal();
@@ -254,7 +254,7 @@ function renderEventContent(eventInfo) {
     return (
         <>
             <div className="eventOverflow">
-                <b>{eventInfo.timeText}</b>
+                <b>{eventInfo.timeText+' '}</b>
                 <i>{eventInfo.event.title}</i>
             </div>
         </>
