@@ -35,7 +35,7 @@ export default function TodoForm(props) {
         id="new-todo-subject"
         className="input input__lg"
         name="subject"
-        autoComplete="off"
+        autoComplete="on"
         value={task.subject}
         placeholder="Subject"
         onChange={handleChange}
@@ -45,7 +45,7 @@ export default function TodoForm(props) {
         id="new-todo-task"
         className="input input__lg"
         name="taskName"
-        autoComplete="off"
+        autoComplete="on"
         value={task.taskName}
         placeholder="Task"
         onChange={handleChange}

@@ -49,6 +49,7 @@ body {
 
 .calendar {
   margin: 4px 100px;
+  background-color: #000000;
 }
 
 .title {
@@ -88,4 +89,14 @@ body {
 }
 .fc-day-grid-event > .fc-content:hover {
   max-height:none!important; 
+}
+
+.separator1{
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+
+.addcoursepage{
+  background-color: #8ea4ed;
 }
