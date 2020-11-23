@@ -8,6 +8,7 @@ import NavbarComponent from './components/NavbarComponent'
 import NotFound from './views/NotFoundView';
 import './App.css';
 import './App.sass' 
+import AddClassView from './views/AddClassView';
 
 const DATA = [
   { id: "todo-0", subject: "Food", taskName: "Eat", dueDate: "2020-11-26", completed: true },
@@ -43,6 +44,7 @@ function App() {
             <Route exact path="/calendar" render={() => <CalendarView classInfo={ClassTempData} callenData={CalendarData}/>}/>
             <Route exact path="/todolist" render={() => <TodoView tasks={DATA} />}/>
             <Route exact path="/login" component={LoginView}/>
+            <Route exact path="/addclass" component={AddClassView}/>
           </Switch>
     </div>
   );

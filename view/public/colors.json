@@ -1,0 +1,51 @@
+[
+    {
+        "id": "Pink",
+        "hex-value": "#EB53FA"
+    },
+    {
+        "id": "Red",
+        "hex-value": "#EE032A"
+    },
+    {
+        "id": "Orange",
+        "hex-value": "FFAC1A"
+    },
+    {
+        "id": "Green",
+        "hex-value": "#1CC93E"
+    },
+    {
+        "id": "Teal",
+        "hex-value": "#3FB298"
+    },
+    {
+        "id": "Light Blue",
+        "hex-value": "#8EC4FA"
+    },
+    {
+        "id": "Blue",
+        "hex-value": "#341AF1"
+    },
+    {
+        "id": "Purple",
+        "hex-value": "#681CDF"
+    },
+    {
+        "id": "Maroon",
+        "hex-value": "#663366"
+    },
+    {
+        "id": "Yellow",
+        "hex-value": "#FFE135"
+    },
+    {
+        "id": "Brown",
+        "hex-value": "#663300"
+    },
+    {
+        "id": "Grey",
+        "hex-value": "#5A5958"
+    }
+
+]

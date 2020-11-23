@@ -7,6 +7,7 @@ export default function Home () {
     <div className="Home">
       <CalendarView/>
       <LoginView/>
+      <AddClassView/>
     </div>
     );
 };
