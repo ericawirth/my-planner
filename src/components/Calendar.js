@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar(props) {
-    const [event, setEvent] = useState([{ id: 0, title: 'Smoke & Turkey with KMP', date: '2020-11-24' }]);
+    const [event, setEvent] = useState([{ id: 0, title: 'Smoke & Turkey with KMP', date: '2020-11-26' }]);
     const [modalError, setmodalError] = useState(false);
     const [modalState, setmodalState] = useState(false);
     const [ExistingEvent, setExistingEvent] = useState(false);
