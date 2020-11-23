@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { debounce } from "throttle-debounce";
 
 export default function TodoForm(props) {
   
@@ -34,7 +35,7 @@ export default function TodoForm(props) {
         id="new-todo-subject"
         className="input input__lg"
         name="subject"
-        autoComplete="on"
+        autoComplete="off"
         value={task.subject}
         placeholder="Subject"
         onChange={handleChange}
@@ -44,7 +45,7 @@ export default function TodoForm(props) {
         id="new-todo-task"
         className="input input__lg"
         name="taskName"
-        autoComplete="on"
+        autoComplete="off"
         value={task.taskName}
         placeholder="Task"
         onChange={handleChange}
