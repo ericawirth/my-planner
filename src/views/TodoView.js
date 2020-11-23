@@ -93,8 +93,8 @@ export default function TodoView(props) {
       }
     
     
-      const tasksNoun = todoList.length !== 1 ? 'tasks' : 'task';
-      const headingText = `${todoList.length} ${tasksNoun} remaining`;
+      const tasksNoun = todoList.length !== 1 ? 'Tasks' : 'Task';
+      const headingText = `${todoList.length} ${tasksNoun} Remaining`;
     
       const listHeadingRef = useRef(null);
       const prevTaskLength = usePrevious(tasks.length);
@@ -116,7 +116,8 @@ export default function TodoView(props) {
         <div className="filters btn-group stack-exception">
             {filterList}
         </div>
-        <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
+        <div className="list">
+        <h2 id="list-heading" className="title" tabIndex="-1" ref={listHeadingRef}>
           {headingText}
         </h2>
         <ul
@@ -126,6 +127,7 @@ export default function TodoView(props) {
         >
           {todoList}
         </ul>
+        </div>
       </div>
       );
 };
