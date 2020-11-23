@@ -64,7 +64,7 @@ exports.deleteEvent = (request, response) => {
         .then((doc) => {
             if (!doc.exists) {
                 return response.status(404).json({
-                    error: 'Todo not found'
+                    error: 'Event not found'
                 })
             }
             if (doc.data().username !== request.user.username) {

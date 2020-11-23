@@ -1,2 +1,8 @@
-# my-planner
-A website that acts as an academic planner for UNC students. Users have their own personal accounts that contain their course todo-lists and calendars. Calendars come preloaded with UNC registrar and academic calendar events.
+# Welcome to My Planner!
+
+> My Planner is a website that functions as an academic and life planner for UNC students. Each calendar comes pre-loaded with UNC registrar and academic calendar events. Additionally, each user may create their own personal accounts and access their course to-do lists and calendars.
+
+## My Planner Features
+- Calendar Homepage
+- To-Do List
+- Sign up and Login 
