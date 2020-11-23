@@ -8,21 +8,43 @@ import { nanoid } from "nanoid";
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar(props) {
-    const [event, setEvent] = useState([{}]);
+    const [event, setEvent] = useState(props.callenData);
     const [modalError, setmodalError] = useState(false);
     const [modalState, setmodalState] = useState(false);
     const [ExistingEvent, setExistingEvent] = useState(false);
     const [ClassInfo, setClassInfo] = useState(props.classInfo);
     const [newEvent, setnewEvent] = useState({
+        id: "",
         title: "",
         eventType: "Event",
         classDetails: "None",
-        startDate: "",
-        endDate: "",
+        start: "",
+        end: "",
         allDay: true,
-        startTime: "",
-        endTime: ""
     });
+
+    function parseDateTime(dateTime) {
+        let date = new Date(dateTime);
+        let newDate = "";
+        let newTime = "00:00";
+        if (date && date.getFullYear) {
+            newDate = date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2);            
+        }
+        if (date && date.getHours){
+            newTime = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
+        }
+        return [newDate, newTime];
+    }
+
+    function createDateTime(startDate, startTime) {
+        let date = startDate;
+        let time = startTime;
+        if(!date)
+            date = "2020-11-15"
+        if(!time)
+            time = "00:00"
+        return startDate + 'T' + startTime;
+    }
 
     function addEvents(events) {
         if (events && events.length && events.length > 0) {
@@ -40,57 +62,68 @@ export default function Calendar(props) {
             setEvent(mappedEvents);
         }
     }
-    useEffect(() => {
-        addEvents(props.callenData);
-      },[props.callenData]);
 
     const handleDateClick = (arg) => {
         titleText = "";
         setExistingEvent(false);
-        let date = new Date(arg.date);
         let id = 'cal-' + nanoid();
         setnewEvent({
             ...newEvent,
             id: id,
             allDay: true,
-            startDate: date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2),
-            endDate: date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2),
-            startTime: ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2),
-            endTime: ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes() + 15).slice(-2)
+            classDetails: {},
+            start: new Date(arg.date),
+            end: new Date(arg.date),
         });
         setmodalError("");
         toggleModal();
     }
 
-    const handleEventClick = (arg) => {
-        setExistingEvent(true);
-        let startDate = new Date(arg.event.start);
-        let endDate = new Date(arg.event.end);
+    const handleEventClick = (arg) => {     
+        setExistingEvent(true);   
         titleText = arg.event.title;
-        console.log(arg);
+
         setnewEvent({
             ...newEvent,
             id: arg.event.id,
             title: arg.event.title,
             classDetails: arg.event.extendedProps.classDetails ? arg.event.extendedProps.classDetails : " ",
             eventType: arg.event.extendedProps.eventType ? arg.event.extendedProps.eventType : "Event",
+            start: arg.event.start,
+            end: arg.event.end ? arg.event.end: arg.event.start,
             allDay: arg.event.end ? false : true,
-            startDate: startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2),
-            endDate: arg.event.end ? endDate.getFullYear() + '-' + ("0" + (endDate.getMonth() + 1)).slice(-2) + '-' + ("0" + endDate.getDate()).slice(-2) : startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2),
-            startTime: ("0" + startDate.getHours()).slice(-2) + ':' + ("0" + startDate.getMinutes()).slice(-2),
-            endTime: arg.event.end ? ("0" + endDate.getHours()).slice(-2) + ':' + ("0" + endDate.getMinutes()).slice(-2) : "",
         });
         setmodalError("");
         toggleModal();
     }
 
     function handleChange(e) {
+        console.log('handleChange');
         let value = (e.target.value);
-        if (e.target.name === "allDay")
+        let name = e.target.name;
+        if (e.target.name === "allDay"){
             value = e.target.checked
+        }
+        if (name === "startDate") {
+            value = createDateTime(value, parseDateTime(newEvent.start)[1]);
+            name = "start"
+        }
+        else if (name === "endDate") {
+            value = createDateTime(value, parseDateTime(newEvent.end)[1]);
+            name = "end"
+        }
+        else if (name === "startTime") {
+            value = createDateTime(parseDateTime(newEvent.start)[0], value);
+            name = "start"
+        }
+        else if (name === "endTime") {
+            value = createDateTime(parseDateTime(newEvent.end)[0], value);
+            name = "end"
+        }
+        
         setnewEvent({
             ...newEvent,
-            [e.target.name]: value,
+            [name]: value,
         });
     }
 
@@ -113,11 +146,11 @@ export default function Calendar(props) {
             setmodalError("Set A Title")
         }
         else if (newEvent.allDay) {
-            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate, end: newEvent.endDate, eventType: newEvent.eventType, classDetails: newEvent.classDetails, backgroundColor: newEvent.classDetails && newEvent.classDetails.color ? newEvent.classDetails.color : " " }]);
+            setEvent(oldArray => [...oldArray, { id: newEvent.id, allDay: newEvent.allDay, title: titleText, start: newEvent.start, end: newEvent.end, eventType: newEvent.eventType, classDetails: newEvent.classDetails, backgroundColor: newEvent.classDetails && newEvent.classDetails.color ? newEvent.classDetails.color : " " }]);
             toggleModal();
         }
         else {
-            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate + 'T' + newEvent.startTime, end: newEvent.endDate + 'T' + newEvent.endTime, eventType: newEvent.eventType, classDetails: newEvent.classDetails }]);
+            setEvent(oldArray => [...oldArray, { id: newEvent.id, allDay: newEvent.allDay, title: titleText, start: newEvent.start, end: newEvent.end, eventType: newEvent.eventType, classDetails: newEvent.classDetails }]);
             toggleModal();
         }
     }
@@ -139,7 +172,7 @@ export default function Calendar(props) {
                     className="input input__lg"
                     name="startTime"
                     autoComplete="off"
-                    value={newEvent.startTime}
+                    value={parseDateTime(newEvent.start)[1]}
                     onChange={handleChange}
                 />
             </div>
@@ -150,7 +183,7 @@ export default function Calendar(props) {
                     className="input input__lg"
                     name="endTime"
                     autoComplete="off"
-                    value={newEvent.endTime}
+                    value={parseDateTime(newEvent.end)[1]}
                     onChange={handleChange}
                 />
             </div>
@@ -220,7 +253,7 @@ export default function Calendar(props) {
                                         className="input input__lg"
                                         name="startDate"
                                         autoComplete="off"
-                                        value={newEvent.startDate}
+                                        value={parseDateTime(newEvent.start)[0]}
                                         onChange={handleChange}
                                     />
                                 </div>
@@ -231,7 +264,7 @@ export default function Calendar(props) {
                                         className="input input__lg"
                                         name="endDate"
                                         autoComplete="off"
-                                        value={newEvent.endDate}
+                                        value={parseDateTime(newEvent.end)[0]}
                                         onChange={handleChange}
                                     />
                                 </div>

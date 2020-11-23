@@ -1,14 +1,13 @@
-import logo from './logo.svg';
+import React, {useEffect } from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
+import TodoView from './views/TodoView'; 
+import CalendarView from './views/CalendarView'
+import logo from './logo.svg';
+import NavbarComponent from './components/NavbarComponent'
+import NotFound from './views/NotFoundView';
 import './App.css';
 import './App.sass' 
-//import LoginView from './views/LoginView';
-//import CalendarView from './views/CalendarView';
-import TodoView from './views/TodoView'; 
-import NotFound from './views/NotFoundView';
-import Home from './HomeView';
-import CalendarView from './views/CalendarView'
-import NavbarComponent from './components/NavbarComponent'
+
 const DATA = [
   { id: "todo-0", subject: "Food", taskName: "Eat", dueDate: "2020-11-26", completed: true },
   { id: "todo-1", subject: "Life", taskName: "Sleep", completed: false },
@@ -21,14 +20,19 @@ const ClassTempData = [
   { id: 0, classTitle: "Comp555", color: "Green"},
 ];
 
-const CalendarData = [
-  {id: "1234", title: "Test1", eventType: "Event",classDetails: "None", startDate: '2020-11-25', endDate: '2020-11-25', allDay: true, startTime: "", endTime: ""},
-  {id: "1235",title: "Test2", eventType: "Event",classDetails: "None", startDate: '2020-11-25', endDate: '2020-11-25', allDay: true, startTime: "", endTime: ""},
-  {id: "1236",title: "Test3", eventType: "Event",classDetails: "None", startDate: '2020-11-24', endDate: '2020-11-24', allDay: true, startTime: "", endTime: ""},
-  {id: "1237",title: "Smoke & Turkey with KMP", eventType: "Event",classDetails: "None", startDate: '2020-11-26', endDate: '2020-11-26', allDay: true, startTime: "", endTime: ""},
+let CalendarData = [
+  {id: "1234", title: "Test1", eventType: "Event",classDetails: "None", start: '2020-11-25T00:00', end: '2020-11-25T00:00', allDay: true},
+  {id: "1235",title: "Test2", eventType: "Event",classDetails: "None", start: '2020-11-25T00:00', end: '2020-11-25T00:00', allDay: true},
+  {id: "1236",title: "Test3", eventType: "Event",classDetails: "None", start: '2020-11-24T00:00', end: '2020-11-24T00:00', allDay: true},
+  {id: "1237",title: "Smoke & Turkey with KMP", eventType: "Event",classDetails: "None", start: '2020-11-26T00:00', end: '2020-11-26T00:00', allDay: true},
 ]
 
+
+
 function App() {
+  useEffect(() => {
+    console.log('change');
+  },[CalendarData]);
 
   return (
     <div className="App">
