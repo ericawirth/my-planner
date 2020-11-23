@@ -15,7 +15,7 @@ export default function Calendar(props) {
     const [newEvent, setnewEvent] = useState({
         title: "",
         eventType: "Event",
-        classDetails: ClassInfo && ClassInfo.length > 0 ? ClassInfo[0] : "",
+        classDetails: "None",
         startDate: "",
         endDate: "",
         allDay: true,
@@ -159,6 +159,7 @@ export default function Calendar(props) {
                                 </div>
                             </div>
                             <div className="field">
+                            <label class="label">Class</label>
                                 <p className="control  ">
                                     <span className="select">
                                         <select
@@ -166,7 +167,7 @@ export default function Calendar(props) {
                                             value={newEvent.classDetails && newEvent.classDetails.classTitle ? newEvent.classDetails.classTitle : " "}
                                             onChange={handleClassDetails}
                                         >
-                                            <option>Class</option>
+                                            <option>None</option>
                                             {
                                                 ClassInfo.map((item, index) => {
                                                     return (<option key={index}>{item.classTitle}</option>)
@@ -177,6 +178,7 @@ export default function Calendar(props) {
                                 </p>
                             </div>
                             <div className="field">
+                            <label class="label">Event Type</label>
                                 <p className="control  ">
                                     <span className="select">
                                         <select
