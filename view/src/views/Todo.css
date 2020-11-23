@@ -107,9 +107,15 @@
     margin-left: auto;
     margin-right: auto;
   }
+
   .todoapp > form {
-    max-width: 100%;
+    max-width: 50%;
   }
+
+  .todoapp > form > input {
+    font-size: 30px;
+  }
+
   .todoapp > h1 {
     display: block;
     max-width: 100%;
