@@ -1,6 +1,7 @@
 import React, {useEffect } from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import TodoView from './views/TodoView'; 
+import LoginView from './/views/LoginView';
 import CalendarView from './views/CalendarView'
 import logo from './logo.svg';
 import NavbarComponent from './components/NavbarComponent'
@@ -41,6 +42,7 @@ function App() {
             <Route exact path="/"> <Redirect to="/calendar" /> </Route>
             <Route exact path="/calendar" render={() => <CalendarView classInfo={ClassTempData} callenData={CalendarData}/>}/>
             <Route exact path="/todolist" render={() => <TodoView tasks={DATA} />}/>
+            <Route exact path="/login" component={LoginView}/>
           </Switch>
     </div>
   );

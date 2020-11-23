@@ -25,7 +25,7 @@ export default function NavbarComponent() {
                         </a>
                     </div>
                     <div className="navbar-item has-dropdown is-hoverable">
-                        <a className="navbar-link" href="#">
+                        <a className="navbar-link" href="/login">
                             My Account
                             </a>
                         <div className="navbar-dropdown">

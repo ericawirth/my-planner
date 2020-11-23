@@ -1,8 +1,97 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios'
 import '../App.css';
 import '../App.sass';
 
-export default function LoginView() {
+export default function LoginView(props) {
+    const [State, setState] = useState({
+        email: '',
+        password: '',
+        errors: [],
+        loading: false
+    });
+    const [RegisterState, setRegisterState] = useState({
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        country: '',
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        errors: [],
+        loading: false
+    });
+
+    function handleChange(e) {
+        setState({
+            ...State,
+            [e.target.name]: e.target.value,
+        });
+    }
+
+    function handleRegisterChange(e) {
+        setRegisterState({
+            ...RegisterState,
+            [e.target.name]: e.target.value,
+        });
+    }
+
+    function handleLoginSubmit(e) {
+        console.log(State);
+        e.preventDefault();
+        setState({ ...State, loading: true });
+        const userData = {
+            email: State.email,
+            password: State.password
+        };
+
+        console.log(userData);
+        axios
+            .post('/login', userData)
+            .then((response) => {
+                localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
+                setState({ ...State, loading: false });
+                props.history.push('/');
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+                setState({
+                    ...State,
+                    errors: error.response.data,
+                    loading: false
+                });
+            });
+    };
+
+    function handleRegisterSubmit(e) {
+        e.preventDefault();
+        setRegisterState({ ...RegisterState, loading: true });
+        const newUserData = {
+            email: RegisterState.email,
+            password: RegisterState.password,
+            confirmPassword: RegisterState.confirmPassword
+        }; 
+
+        console.log(newUserData);
+
+        axios.post('/signup', newUserData)
+            .then((response) => {
+                localStorage.setItem('AuthToken', `${response.data.token}`);
+                setRegisterState({ ...RegisterState, loading: false });
+                props.history.push('/');
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+                setRegisterState({
+                    ...RegisterState,
+                    errors: error.response.data,
+                    loading: false
+                });
+            });
+    };
+
+
     return (
         <div className="container mt-5">
             <div className="container">
@@ -19,28 +108,20 @@ export default function LoginView() {
                             <h1 className="loginlabel">Login</h1>
                             <form>
                                 <div className="field">
-                                    <label className="label1">Username:</label>
+                                    <label className="label1">Email:</label>
                                     <div className="control">
-                                        <input className="" type="text" placeholder="checkm8" name="username"></input>
+                                        <input className="" id="email"  label="Email Address" type="text" placeholder="checkm8" name="email" onChange={handleChange}></input>
                                     </div>
                                 </div>
                                 <div className="">
                                     <label className="label1">Password:</label>
                                     <div className="">
-                                        <input className="" type="password" placeholder="*******" name="password"></input>
+                                        <input className=""  label="Password" type="password" placeholder="*******" name="password" onChange={handleChange}></input>
                                     </div>
                                 </div>
                                 <div className="">
                                     <div className="">
-                                        <label className="checkbox">
-                                            <input type="checkbox" name="remember"></input>
-                                Remember your login info?
-                            </label>
-                                    </div>
-                                </div>
-                                <div className="">
-                                    <div className="">
-                                        <input className="" type="submit"></input>
+                                        <input onClick={handleLoginSubmit} className="" type="submit"></input>
                                     </div>
                                 </div>
                             </form>
@@ -49,26 +130,26 @@ export default function LoginView() {
                             <h1 className="signuplabel">Don't have an account? Sign Up!</h1>
                             <form>
                                 <div className="">
-                                    <label className="label1">Create Username:</label>
+                                    <label className="label1">Create Email:</label>
                                     <div className="">
-                                        <input className="" type="text" placeholder="checkm8" name="username"></input>
+                                        <input className="" type="text" placeholder="checkm8" name="email" onChange={handleRegisterChange}></input>
                                     </div>
                                 </div>
                                 <div className="label1">
                                     <label className="">Create Password:</label>
                                     <div className="">
-                                        <input className="" type="password" placeholder="*******"></input>
+                                        <input className="" type="password" name="password" placeholder="*******" onChange={handleRegisterChange}></input>
                                     </div>
                                 </div>
                                 <div className="">
                                     <label className="label1">Repeat Password:</label>
                                     <div className="">
-                                        <input className="" type="password" placeholder="Password123!" name="password"></input>
+                                        <input className="" type="password" name="confirmPassword" placeholder="Password123!" onChange={handleRegisterChange}></input>
                                     </div>
                                 </div>
                                 <div className="">
                                     <div className="">
-                                        <input className="" type="submit"></input>
+                                        <input className="" type="submit" onClick={handleRegisterSubmit}></input>
                                     </div>
                                 </div>
                             </form>

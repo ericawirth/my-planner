@@ -73,7 +73,7 @@ exports.deleteEvent = (request, response) => {
             return document.delete();
         })
         .then(() => {
-            response.json({ message: 'Delete successfull' });
+            return response.json({ message: 'Delete successfull' });
         })
         .catch((err) => {
             console.error(err);
@@ -89,7 +89,7 @@ exports.editEvent = (request, response) => {
     let document = db.collection('events').doc(`${request.params.eventId}`);
     document.update(request.body)
         .then(() => {
-            response.json({ message: 'Updated successfully' });
+            return response.json({ message: 'Updated successfully' });
         })
         .catch((err) => {
             console.error(err);
