@@ -49,5 +49,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000/my-planner426/us-central1/api"
+  "proxy": "https://us-central1-my-planner426.cloudfunctions.net/api"
 }

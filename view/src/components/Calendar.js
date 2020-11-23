@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from "@fullcalendar/interaction"
 import 'react-datepicker/dist/react-datepicker.css';
 import { nanoid } from "nanoid";
+import axios from 'axios';
+import { authMiddleWare } from '../util/auth';
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar(props) {
@@ -13,6 +15,7 @@ export default function Calendar(props) {
     const [modalState, setmodalState] = useState(false);
     const [ExistingEvent, setExistingEvent] = useState(false);
     const [ClassInfo, setClassInfo] = useState(props.classInfo);
+    let [responseData, setResponseData] = useState('');
     const [newEvent, setnewEvent] = useState({
         id: "",
         title: "",
@@ -22,6 +25,28 @@ export default function Calendar(props) {
         end: "",
         allDay: true,
     });
+
+    const fetchData = useCallback(() => {
+        authMiddleWare(props.history);
+		const authToken = localStorage.getItem('AuthToken');
+		axios.defaults.headers.common = { Authorization: `${authToken}` };
+		axios
+			.get('/events')
+			.then((response) => {
+				setResponseData({                    
+					events: response.data
+                });
+                console.log('fetched');
+                console.log(response);
+			})
+        .catch((error) => {
+          console.log(error)
+        })
+      }, [])
+
+    useEffect(() => {
+        fetchData()
+      }, [fetchData])
 
     function parseDateTime(dateTime) {
         let date = new Date(dateTime);
@@ -138,10 +163,35 @@ export default function Calendar(props) {
     }
 
     function addEvent() {
+        authMiddleWare(props.history);       
+
         setnewEvent({
             ...newEvent,
             title: titleText,
         });
+
+        const userEvent = {
+            title: titleText,
+            body: 'TESTING'
+        };
+
+        let options = {
+            url: '/event',
+            method: 'post',
+            data: userEvent
+        };
+
+        const authToken = localStorage.getItem('AuthToken');
+			axios.defaults.headers.common = { Authorization: `${authToken}` };
+			axios(options)
+				.then(() => {
+                    console.log("Sent Event");
+					//window.location.reload();
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+
         if (titleText === "") {
             setmodalError("Set A Title")
         }
