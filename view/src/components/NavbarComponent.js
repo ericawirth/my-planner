@@ -17,6 +17,9 @@ export default function NavbarComponent() {
                 </div>
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-start">
+                        <a className="navbar-item" href="/addclass">
+                            +Add Class
+                        </a>
                         <a className="navbar-item" href="/calendar">
                             Calendar
                         </a>
