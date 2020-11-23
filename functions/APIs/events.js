@@ -10,10 +10,8 @@ exports.getAllEvents = (request, response) => {
             data.forEach((doc) => {
                 console.log(doc);
                 events.push({
-                    eventId: doc.id,
-                    title: doc.data().title,
-                    body: doc.data().body,
-                    createdAt: doc.data().createdAt,
+                    id: doc.id,
+                    data: doc.data(),
                 });
             });
             return response.json(events);
@@ -25,27 +23,27 @@ exports.getAllEvents = (request, response) => {
 };
 
 exports.getOneEvent = (request, response) => {
-	db
+    db
         .doc(`/events/${request.params.eventId}`)
-		.get()
-		.then((doc) => {
-			if (!doc.exists) {
-				return response.status(404).json(
-                    { 
-                        error: 'Event not found' 
+        .get()
+        .then((doc) => {
+            if (!doc.exists) {
+                return response.status(404).json(
+                    {
+                        error: 'Event not found'
                     });
             }
-            if(doc.data().email !== request.user.email){
-                return response.status(403).json({error:"UnAuthorized"})
+            if (doc.data().email !== request.user.email) {
+                return response.status(403).json({ error: "UnAuthorized" })
             }
-			let EventData = doc.data();
-			EventData.eventId = doc.id;
-			return response.json(EventData);
-		})
-		.catch((err) => {
-			console.error(err);
-			return response.status(500).json({ error: error.code });
-		});
+            let EventData = doc.data();
+            EventData.eventId = doc.id;
+            return response.json(EventData);
+        })
+        .catch((err) => {
+            console.error(err);
+            return response.status(500).json({ error: error.code });
+        });
 };
 
 exports.postOneEvent = (request, response) => {
@@ -61,6 +59,11 @@ exports.postOneEvent = (request, response) => {
         title: request.body.title,
         email: request.user.email,
         body: request.body.body,
+        eventType: request.body.eventType,
+        classDetails: request.body.classDetails,
+        start: request.body.start,
+        end: request.body.end,
+        allDay: request.body.allDay,
         createdAt: new Date().toISOString()
     }
     db

@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { nanoid } from "nanoid";
 import axios from 'axios';
 import { authMiddleWare } from '../util/auth';
+import { useHistory } from "react-router-dom";
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar(props) {
@@ -16,9 +17,11 @@ export default function Calendar(props) {
     const [ExistingEvent, setExistingEvent] = useState(false);
     const [ClassInfo, setClassInfo] = useState(props.classInfo);
     let [responseData, setResponseData] = useState('');
+    let history = useHistory();
     const [newEvent, setnewEvent] = useState({
         id: "",
         title: "",
+        body: "empty For now",
         eventType: "Event",
         classDetails: "None",
         start: "",
@@ -27,35 +30,36 @@ export default function Calendar(props) {
     });
 
     const fetchData = useCallback(() => {
-        authMiddleWare(props.history);
-		const authToken = localStorage.getItem('AuthToken');
-		axios.defaults.headers.common = { Authorization: `${authToken}` };
-		axios
-			.get('/events')
-			.then((response) => {
-				setResponseData({                    
-					events: response.data
+        authMiddleWare(history);
+        const authToken = localStorage.getItem('AuthToken');
+        axios.defaults.headers.common = { Authorization: `${authToken}` };
+        axios
+            .get('/events')
+            .then((response) => {
+                setResponseData({
+                    events: response.data
                 });
                 console.log('fetched');
                 console.log(response);
-			})
-        .catch((error) => {
-          console.log(error)
-        })
-      }, [])
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [])
 
     useEffect(() => {
+        authMiddleWare(history);
         fetchData()
-      }, [fetchData])
+    }, [fetchData])
 
     function parseDateTime(dateTime) {
         let date = new Date(dateTime);
         let newDate = "";
         let newTime = "00:00";
         if (date && date.getFullYear) {
-            newDate = date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2);            
+            newDate = date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + ("0" + date.getDate()).slice(-2);
         }
-        if (date && date.getHours){
+        if (date && date.getHours) {
             newTime = ("0" + date.getHours()).slice(-2) + ':' + ("0" + date.getMinutes()).slice(-2);
         }
         return [newDate, newTime];
@@ -64,9 +68,9 @@ export default function Calendar(props) {
     function createDateTime(startDate, startTime) {
         let date = startDate;
         let time = startTime;
-        if(!date)
+        if (!date)
             date = "2020-11-15"
-        if(!time)
+        if (!time)
             time = "00:00"
         return startDate + 'T' + startTime;
     }
@@ -104,8 +108,8 @@ export default function Calendar(props) {
         toggleModal();
     }
 
-    const handleEventClick = (arg) => {     
-        setExistingEvent(true);   
+    const handleEventClick = (arg) => {
+        setExistingEvent(true);
         titleText = arg.event.title;
 
         setnewEvent({
@@ -115,7 +119,7 @@ export default function Calendar(props) {
             classDetails: arg.event.extendedProps.classDetails ? arg.event.extendedProps.classDetails : " ",
             eventType: arg.event.extendedProps.eventType ? arg.event.extendedProps.eventType : "Event",
             start: arg.event.start,
-            end: arg.event.end ? arg.event.end: arg.event.start,
+            end: arg.event.end ? arg.event.end : arg.event.start,
             allDay: arg.event.end ? false : true,
         });
         setmodalError("");
@@ -126,7 +130,7 @@ export default function Calendar(props) {
         console.log('handleChange');
         let value = (e.target.value);
         let name = e.target.name;
-        if (e.target.name === "allDay"){
+        if (e.target.name === "allDay") {
             value = e.target.checked
         }
         if (name === "startDate") {
@@ -145,7 +149,7 @@ export default function Calendar(props) {
             value = createDateTime(parseDateTime(newEvent.end)[0], value);
             name = "end"
         }
-        
+
         setnewEvent({
             ...newEvent,
             [name]: value,
@@ -163,7 +167,7 @@ export default function Calendar(props) {
     }
 
     function addEvent() {
-        authMiddleWare(props.history);       
+        authMiddleWare(history);
 
         setnewEvent({
             ...newEvent,
@@ -172,7 +176,12 @@ export default function Calendar(props) {
 
         const userEvent = {
             title: titleText,
-            body: 'TESTING'
+            body: newEvent.body,
+            eventType: newEvent.eventType,
+            classDetails: newEvent.classDetails,
+            start: newEvent.start,
+            end: newEvent.end,
+            allDay: newEvent.allDay,
         };
 
         let options = {
@@ -182,15 +191,15 @@ export default function Calendar(props) {
         };
 
         const authToken = localStorage.getItem('AuthToken');
-			axios.defaults.headers.common = { Authorization: `${authToken}` };
-			axios(options)
-				.then(() => {
-                    console.log("Sent Event");
-					//window.location.reload();
-				})
-				.catch((error) => {
-					console.log(error);
-				});
+        axios.defaults.headers.common = { Authorization: `${authToken}` };
+        axios(options)
+            .then(() => {
+                console.log("Sent Event");
+                //window.location.reload();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
         if (titleText === "") {
             setmodalError("Set A Title")
