@@ -25,7 +25,6 @@ export default function TodoForm(props) {
         ...task,
         [e.target.name]: value
     });
-    console.log(task);
   }
 
   return (

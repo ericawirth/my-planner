@@ -50,7 +50,7 @@ export default function TodoView(props) {
         // if this task has the same ID as the edited task
           if (id === task.id) {
             //
-            return {...task, name: newName}
+            return {...task, taskName: newName}
           }
           return task;
         });
@@ -74,11 +74,11 @@ export default function TodoView(props) {
         />
     ));
 
-    const filterList = FILTER_NAMES.map(name => (
+    const filterList = FILTER_NAMES.map(taskName => (
         <FilterButton
-          key={name}
-          name={name}
-          isPressed={name === filter}
+          key={taskName}
+          taskName={taskName}
+          isPressed={taskName === filter}
           setFilter={setFilter}
         />
       ));
