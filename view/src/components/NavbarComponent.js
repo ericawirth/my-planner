@@ -17,14 +17,14 @@ export default function NavbarComponent() {
                 </div>
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-start">
-                        <a className="navbar-item" href="/addclass">
-                            +Add Class
-                        </a>
                         <a className="navbar-item" href="/calendar">
                             Calendar
                         </a>
                         <a className="navbar-item" href="/todolist">
                             To-Do List
+                        </a>
+                        <a className="navbar-item" href="/addclass">
+                            +Add Class
                         </a>
                     </div>
                     <div className="navbar-item has-dropdown is-hoverable">
