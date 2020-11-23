@@ -95,7 +95,7 @@ export default function Calendar(props) {
             setmodalError("Set A Title")
         }
         else if (newEvent.allDay) {
-            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate, end: newEvent.endDate, eventType: newEvent.eventType, classDetails: newEvent.classDetails }]);
+            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate, end: newEvent.endDate, eventType: newEvent.eventType, classDetails: newEvent.classDetails, backgroundColor: newEvent.classDetails&&newEvent.classDetails.color? newEvent.classDetails.color: " "}]);
             toggleModal();
         }
         else {
@@ -166,6 +166,7 @@ export default function Calendar(props) {
                                             value={newEvent.classDetails && newEvent.classDetails.classTitle ? newEvent.classDetails.classTitle : " "}
                                             onChange={handleClassDetails}
                                         >
+                                            <option>Class</option>
                                             {
                                                 ClassInfo.map((item, index) => {
                                                     return (<option key={index}>{item.classTitle}</option>)
