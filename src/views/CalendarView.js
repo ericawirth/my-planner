@@ -3,6 +3,6 @@ import Calendar from '../components/Calendar';
 
 export default function CalendarView(props) {
     return (
-        <Calendar classInfo={props.classInfo}/>
+        <Calendar classInfo={props.classInfo} callenData={props.callenData}/>
     );
 }

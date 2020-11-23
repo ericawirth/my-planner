@@ -21,6 +21,13 @@ const ClassTempData = [
   { id: 0, classTitle: "Comp555", color: "Green"},
 ];
 
+const CalendarData = [
+  {id: "1234", title: "Test1", eventType: "Event",classDetails: "None", startDate: '2020-11-25', endDate: '2020-11-25', allDay: true, startTime: "", endTime: ""},
+  {id: "1235",title: "Test2", eventType: "Event",classDetails: "None", startDate: '2020-11-25', endDate: '2020-11-25', allDay: true, startTime: "", endTime: ""},
+  {id: "1236",title: "Test3", eventType: "Event",classDetails: "None", startDate: '2020-11-24', endDate: '2020-11-24', allDay: true, startTime: "", endTime: ""},
+  {id: "1237",title: "Smoke & Turkey with KMP", eventType: "Event",classDetails: "None", startDate: '2020-11-26', endDate: '2020-11-26', allDay: true, startTime: "", endTime: ""},
+]
+
 function App() {
 
   return (
@@ -28,7 +35,7 @@ function App() {
         <NavbarComponent/>
           <Switch>
             <Route exact path="/"> <Redirect to="/calendar" /> </Route>
-            <Route exact path="/calendar" render={() => <CalendarView classInfo={ClassTempData}/>}/>
+            <Route exact path="/calendar" render={() => <CalendarView classInfo={ClassTempData} callenData={CalendarData}/>}/>
             <Route exact path="/todolist" render={() => <TodoView tasks={DATA} />}/>
           </Switch>
     </div>

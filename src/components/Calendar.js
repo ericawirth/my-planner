@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -8,7 +8,7 @@ import { nanoid } from "nanoid";
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar(props) {
-    const [event, setEvent] = useState([{ id: 0, title: 'Smoke & Turkey with KMP', date: '2020-11-26' }]);
+    const [event, setEvent] = useState([{}]);
     const [modalError, setmodalError] = useState(false);
     const [modalState, setmodalState] = useState(false);
     const [ExistingEvent, setExistingEvent] = useState(false);
@@ -24,11 +24,31 @@ export default function Calendar(props) {
         endTime: ""
     });
 
+    function addEvents(events) {
+        if (events && events.length && events.length > 0) {
+            let mappedEvents = events.map(event => {
+                return ({
+                    id: event.id,
+                    title: event.title,
+                    start: event.startDate,
+                    end: event.endDate,
+                    eventType: event.eventType,
+                    classDetails: event.classDetails,
+                    backgroundColor: event.classDetails && event.classDetails.color ? event.classDetails.color : " "
+                });
+            });
+            setEvent(mappedEvents);
+        }
+    }
+    useEffect(() => {
+        addEvents(props.callenData);
+      },[props.callenData]);
+
     const handleDateClick = (arg) => {
         titleText = "";
         setExistingEvent(false);
         let date = new Date(arg.date);
-        let id = 'cal-'+nanoid();
+        let id = 'cal-' + nanoid();
         setnewEvent({
             ...newEvent,
             id: id,
@@ -52,7 +72,7 @@ export default function Calendar(props) {
             ...newEvent,
             id: arg.event.id,
             title: arg.event.title,
-            classDetails: arg.event.extendedProps.classDetails? arg.event.extendedProps.classDetails: " " ,
+            classDetails: arg.event.extendedProps.classDetails ? arg.event.extendedProps.classDetails : " ",
             eventType: arg.event.extendedProps.eventType ? arg.event.extendedProps.eventType : "Event",
             allDay: arg.event.end ? false : true,
             startDate: startDate.getFullYear() + '-' + ("0" + (startDate.getMonth() + 1)).slice(-2) + '-' + ("0" + startDate.getDate()).slice(-2),
@@ -80,7 +100,7 @@ export default function Calendar(props) {
         });
         setnewEvent({
             ...newEvent,
-            classDetails: detail.length > 0? detail[0]: "",
+            classDetails: detail.length > 0 ? detail[0] : "",
         });
     }
 
@@ -93,7 +113,7 @@ export default function Calendar(props) {
             setmodalError("Set A Title")
         }
         else if (newEvent.allDay) {
-            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate, end: newEvent.endDate, eventType: newEvent.eventType, classDetails: newEvent.classDetails, backgroundColor: newEvent.classDetails&&newEvent.classDetails.color? newEvent.classDetails.color: " "}]);
+            setEvent(oldArray => [...oldArray, { id: newEvent.id, title: titleText, start: newEvent.startDate, end: newEvent.endDate, eventType: newEvent.eventType, classDetails: newEvent.classDetails, backgroundColor: newEvent.classDetails && newEvent.classDetails.color ? newEvent.classDetails.color : " " }]);
             toggleModal();
         }
         else {
@@ -157,7 +177,7 @@ export default function Calendar(props) {
                                 </div>
                             </div>
                             <div className="field">
-                            <label className="label">Class</label>
+                                <label className="label">Class</label>
                                 <p className="control  ">
                                     <span className="select">
                                         <select
@@ -176,7 +196,7 @@ export default function Calendar(props) {
                                 </p>
                             </div>
                             <div className="field">
-                            <label className="label">Event Type</label>
+                                <label className="label">Event Type</label>
                                 <p className="control  ">
                                     <span className="select">
                                         <select
