@@ -72,10 +72,10 @@ function usePrevious(value) {
               onChange={() => props.toggleTaskCompleted(props.id)}
             />
             <label className="todo-label" htmlFor={props.id}>
-                <strong>{props.subject}:</strong> {props.taskName}
+                {props.subject}: {props.taskName}
             </label>
-          </div>
-          <div className="btn-group">
+        </div>
+        <div className="btn-group">
           <button
             type="button"
             className="btn btn_e_d"
@@ -91,7 +91,7 @@ function usePrevious(value) {
             >
               Delete
             </button>
-          </div>
+        </div>
       </div>
     );
   

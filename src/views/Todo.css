@@ -3,8 +3,8 @@ button,
 input {
   overflow: visible;
 }
-input[type="text"] {
-  border-radius: 0;
+input {
+  width: 10%;
 }
 body {
     width: 100%;
@@ -17,40 +17,43 @@ body {
   }
   .btn {
     padding: 0.8rem 1rem 0.7rem;
-    color: black;
+    color: hsl(0, 0%, 21%);
     border: 0.2rem solid rgb(93, 117, 197);
     cursor: pointer;
     text-transform: uppercase;
+    border-radius: 5px;
   }
   .btn.toggle-btn {
     border-width: 2px;
-    border-color: #d3d3d3;
+    font-weight: bold;
+    color:hsl(0, 0%, 21%);
   }
   .btn.toggle-btn[aria-pressed="true"] {
-    text-decoration: underline;
-    border-color: rgb(93, 117, 197);
-    color:rgb(93, 117, 197);
+    border-color: hsl(0, 0%, 21%);
+    border-width: 3px;
+    font-weight: bold;
   }
   .btn__danger {
     color: #fff;
     background-color: hsl(0, 0%, 21%);
-    border-color: hsl(0, 0%, 21%); 
   }
   .btn__filter {
     border-color: lightgrey;
   }
 
   .btn_e_d {
-    width: 1%;
+    max-width: 30%;
   }
 
   .btn__primary {
+    max-width: 30%;
     color: #fff;
     background-color:hsl(0, 0%, 21%);
   }
   .btn-group {
     display: flex;
-    justify-content: space-between;
+    align-content: space-between;
+    justify-content: center;
   }
   .btn-group > * {
     flex: 1 1 49%;
@@ -86,6 +89,17 @@ body {
     margin-top: 1.2rem;
   }
 
+#list-heading {
+  color:hsl(0, 0%, 21%);
+  text-decoration: underline;
+}
+.list {
+  border: 10px solid white;
+  border-radius: 2px;
+  padding: 2%;
+}
+
+
 .todoapp {
     margin: 2rem 0 4rem 0;
     padding: 1rem;
@@ -119,6 +133,7 @@ body {
     text-align: center;
   }
   .input__lg {
+    max-width: 40%;
     padding: 2rem;
     border: 2px solid rgb(93, 117, 197);;
   }
@@ -136,13 +151,14 @@ body {
   }
   @media screen and (min-width: 620px) {
     [class*="__lg"] {
-      font-size: 2.4rem;
+      font-size: 50px;
     }
   }
 
 .filters {
     width: 100%;
     margin: unset auto;
+    margin-top: 8%;
   }
   /* Todo item styles */
   .todo {
