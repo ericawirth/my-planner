@@ -6,9 +6,9 @@ export default function FilterButton(props) {
       type="button"
       className="btn toggle-btn"
       aria-pressed={props.isPressed}
-      onClick={() => props.setFilter(props.name)}
+      onClick={() => props.setFilter(props.taskName)}
     >
-      <span>{props.name}</span>
+      <span>{props.taskName}</span>
     </button>
   );
 }

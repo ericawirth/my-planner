@@ -35,7 +35,7 @@ function usePrevious(value) {
       <form className="stack-small" onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="todo-label" htmlFor={props.id}>
-            New name for {props.name}
+            New name for {props.taskName}
           </label>
           <input
             id={props.id}
@@ -47,7 +47,6 @@ function usePrevious(value) {
           />
         </div>
         <div className="btn-group">
-  
           <button
             type="button"
             className="btn todo-cancel"
