@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from "@fullcalendar/interaction"
 import 'react-datepicker/dist/react-datepicker.css';
+import { nanoid } from "nanoid";
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar(props) {
@@ -27,10 +28,7 @@ export default function Calendar(props) {
         titleText = "";
         setExistingEvent(false);
         let date = new Date(arg.date);
-        let id = 0;
-        if (event.length > 0) {
-            id = event[event.length - 1].id + 1;
-        }
+        let id = 'cal-'+nanoid();
         setnewEvent({
             ...newEvent,
             id: id,
@@ -106,7 +104,7 @@ export default function Calendar(props) {
 
     function deleteEvent() {
         let eventsArr = event.filter(e => {
-            return parseInt(e.id) !== parseInt(newEvent.id);
+            return e.id !== newEvent.id;
         });
         console.log(eventsArr);
         setEvent(eventsArr);
@@ -159,7 +157,7 @@ export default function Calendar(props) {
                                 </div>
                             </div>
                             <div className="field">
-                            <label class="label">Class</label>
+                            <label className="label">Class</label>
                                 <p className="control  ">
                                     <span className="select">
                                         <select
@@ -178,7 +176,7 @@ export default function Calendar(props) {
                                 </p>
                             </div>
                             <div className="field">
-                            <label class="label">Event Type</label>
+                            <label className="label">Event Type</label>
                                 <p className="control  ">
                                     <span className="select">
                                         <select
