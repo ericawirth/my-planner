@@ -22,7 +22,6 @@ function usePrevious(value) {
   const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 export default function TodoView(props) {
-
     const [tasks, setTasks] = useState(props.tasks);
     const [filter, setFilter] = useState('All');
 

@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import './App.css';
 import './App.sass' 
 //import LoginView from './views/LoginView';
@@ -16,14 +16,19 @@ const DATA = [
   { id: "todo-3", subject: "Fun", taskName: "Play Mario Kart", complete: false}
 ];
 
+const ClassTempData = [
+  { id: 0, classTitle: "Comp455", color: "Red"},
+  { id: 0, classTitle: "Comp555", color: "Green"},
+];
+
 function App() {
 
   return (
     <div className="App">
         <NavbarComponent/>
           <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/calendar" component={CalendarView}/>
+            <Route exact path="/"> <Redirect to="/calendar" /> </Route>
+            <Route exact path="/calendar" render={() => <CalendarView classInfo={ClassTempData}/>}/>
             <Route exact path="/todolist" render={() => <TodoView tasks={DATA} />}/>
           </Switch>
     </div>
