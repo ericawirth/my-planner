@@ -84,16 +84,14 @@ export default function TodoView(props) {
       ));
     
       function addTask(task) {
-        console.log(task);
         const newTask = { id: "todo-" + nanoid(), subject: task.subject, taskName: task.taskName, 
                         dueDate: task.dueDate, time: task.time, completed: false };
         setTasks([...tasks, newTask]);
-        console.log(newTask);
       }
     
     
       const tasksNoun = todoList.length !== 1 ? 'Tasks' : 'Task';
-      const headingText = `${todoList.length} ${tasksNoun} Remaining`;
+      const headingText = `${todoList.length} ${tasksNoun}`;
     
       const listHeadingRef = useRef(null);
       const prevTaskLength = usePrevious(tasks.length);
