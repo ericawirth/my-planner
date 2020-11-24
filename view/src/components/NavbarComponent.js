@@ -33,7 +33,7 @@ export default function NavbarComponent() {
                             To-Do List
                         </a>
                         <a className="navbar-item" href="/addclass">
-                            +Add Class
+                            Classes
                         </a>
                     </div>
                     <div className="navbar-item has-dropdown is-hoverable">

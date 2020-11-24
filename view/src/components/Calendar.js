@@ -89,8 +89,6 @@ export default function Calendar(props) {
 
     function addEvents(events) {
         let eventsData = events.events
-        console.log('events data');
-        console.log(eventsData);
         if (eventsData && eventsData.length && eventsData.length > 0) {
             let mappedEvents = eventsData.map(event => {
                 return ({
@@ -104,12 +102,9 @@ export default function Calendar(props) {
                     allDay: event.data.allDay ? true : false,
                 });
             });
-
-            console.log('Mapped');
             mappedEvents.push({ id: "1237", title: "Smoke & Turkey with KMP", eventType: "Event", classDetails: "None", start: '2020-11-26T00:00', end: '2020-11-26T00:00', allDay: true });
             setEvent(mappedEvents);
         }
-        console.log('Notmapped');
     }
 
     const handleDateClick = (arg) => {
@@ -236,12 +231,10 @@ export default function Calendar(props) {
 
     function addEvent() {
         authMiddleWare(history);
-
         setnewEvent({
             ...newEvent,
             title: titleText,
         });
-
         const userEvent = {
             title: titleText,
             body: newEvent.body,
@@ -251,7 +244,6 @@ export default function Calendar(props) {
             end: newEvent.end,
             allDay: newEvent.allDay,
         };
-
         let options = {
             url: '/event',
             method: 'post',
@@ -261,15 +253,19 @@ export default function Calendar(props) {
         const authToken = localStorage.getItem('AuthToken');
         axios.defaults.headers.common = { Authorization: `${authToken}` };
         axios(options)
-            .then(() => {
+            .then((e) => {
+                responseId = e.data.id
                 console.log("Sent Event");
-                //window.location.reload();
+                setnewEvent({
+                    ...newEvent,
+                    id: responseId ? detail[0] : nanoid(),
+                });
+                addLocalEventToCalendar();
             })
             .catch((error) => {
+                toggleModal();
                 console.log(error);
-            });
-
-        addLocalEventToCalendar();
+            });        
     }
 
     function addLocalEventToCalendar(isEdit) {

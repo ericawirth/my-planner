@@ -12,9 +12,23 @@ const {
 
 app.get('/events', auth, getAllEvents);
 app.post('/event', auth, postOneEvent);
-app.get('/todo/:todoId', auth, getOneEvent);
+app.get('/event/:eventId', auth, getOneEvent);
 app.delete('/event/:eventId', auth, deleteEvent);
 app.put('/event/:eventId', auth, editEvent);
+
+const {
+    getAllClasses,
+    getOneClass,
+    postOneClass,
+    deleteClass,
+    editClass,
+} = require('./APIs/classes')
+
+app.get('/classes', auth, getAllClasses);
+app.post('/class', auth, postOneClass);
+app.get('/class/:classId', auth, getOneClass);
+app.delete('/class/:classId', auth, deleteClass);
+app.put('/class/:classId', auth, editClass);
 
 const {
     loginUser,    

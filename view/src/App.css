@@ -108,3 +108,11 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+.changePointer{
+  cursor: pointer;
+}
+
+.blockChildren{
+  pointer-events: none;
+}
