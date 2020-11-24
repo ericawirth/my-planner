@@ -130,7 +130,7 @@ export default function LoginView(props) {
                             <h1 className="signuplabel">Don't have an account? Sign Up!</h1>
                             <form>
                                 <div className="">
-                                    <label className="label1">Create Email:</label>
+                                    <label className="label1">Email:</label>
                                     <div className="">
                                         <input className="" type="text" placeholder="checkm8" name="email" onChange={handleRegisterChange}></input>
                                     </div>
