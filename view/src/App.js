@@ -7,7 +7,8 @@ import logo from './logo.svg';
 import NavbarComponent from './components/NavbarComponent'
 import NotFound from './views/NotFoundView';
 import './App.css';
-import './App.sass'
+import './App.sass' 
+import AddClassView from './views/AddClassView';
 
 const DATA = [
   // { id: "todo-0", subject: "Food", taskName: "Eat", dueDate: "2020-11-26", completed: true },
@@ -22,9 +23,6 @@ const ClassTempData = [
 ];
 
 let CalendarData = [
-  { id: "1234", title: "Test1", eventType: "Event", classDetails: "None", start: '2020-11-25T00:00', end: '2020-11-25T00:00', allDay: true },
-  { id: "1235", title: "Test2", eventType: "Todo", classDetails: "None", start: '2020-11-25T00:00', end: '2020-11-25T00:00', allDay: true },
-  { id: "1236", title: "Test3", eventType: "Todo", classDetails: "None", start: '2020-11-24T00:00', end: '2020-11-24T00:00', allDay: true },
   { id: "1237", title: "Smoke & Turkey with KMP", eventType: "Event", classDetails: "None", start: '2020-11-26T00:00', end: '2020-11-26T00:00', allDay: true },
 ]
 
@@ -44,6 +42,7 @@ function App() {
           <Route exact path="/calendar" render={() => <CalendarView classInfo={ClassTempData} callenData={CalendarData} />} />
           <Route exact path="/todolist" render={() => <TodoView tasks={DATA} />} />
           <Route exact path="/login" component={LoginView} />
+          <Route exact path="/addclass" component={AddClassView}/>
         </Switch>
       </Router>
     </div>

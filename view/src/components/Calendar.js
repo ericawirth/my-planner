@@ -39,8 +39,6 @@ export default function Calendar(props) {
                 setResponseData({
                     events: response.data
                 });
-                console.log('fetched');
-                console.log(response);
             })
             .catch((error) => {
                 console.log(error)
@@ -51,6 +49,15 @@ export default function Calendar(props) {
         authMiddleWare(history);
         fetchData()
     }, [fetchData])
+
+    useEffect(() => {
+        addEvents(responseData);
+    }, [responseData])
+
+    useEffect(() => {
+        console.log('eventzz');
+        console.log(event);
+    }, [event])
 
     function parseDateTime(dateTime) {
         let date = new Date(dateTime);
@@ -76,20 +83,26 @@ export default function Calendar(props) {
     }
 
     function addEvents(events) {
-        if (events && events.length && events.length > 0) {
-            let mappedEvents = events.map(event => {
+        let eventsData = events.events
+        console.log('events data');
+        console.log(eventsData);
+        if (eventsData && eventsData.length && eventsData.length > 0) {
+            let mappedEvents = eventsData.map(event => {
                 return ({
                     id: event.id,
-                    title: event.title,
-                    start: event.startDate,
-                    end: event.endDate,
-                    eventType: event.eventType,
-                    classDetails: event.classDetails,
-                    backgroundColor: event.classDetails && event.classDetails.color ? event.classDetails.color : " "
+                    title: event.data.title,
+                    start: event.data.start,
+                    end: event.data.end,
+                    eventType: event.data.eventType,
+                    classDetails: event.data.classDetails,
+                    backgroundColor: event.data.classDetails &&  event.data.classDetails.color ?  event.data.classDetails.color : " ",
+                    allDay: event.data.allDay ? true : false,
                 });
             });
+            console.log('Mapped');
             setEvent(mappedEvents);
         }
+        console.log('Notmapped');
     }
 
     const handleDateClick = (arg) => {

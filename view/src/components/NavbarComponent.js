@@ -1,9 +1,18 @@
 import React from 'react';
 import '../App.css';
 import '../App.sass';
-import { Link, BrowserRouter, NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 /* eslint-disable jsx-a11y/anchor-is-valid */
+
+
+
+
 export default function NavbarComponent() {
+    let history = useHistory();
+    let logoutHandler = (event) => {
+        localStorage.removeItem('AuthToken');
+        history.push('/login');
+    };
     return (
         <div className="navBar">
             <div className="name">MyPlanner.</div>
@@ -23,6 +32,9 @@ export default function NavbarComponent() {
                         <a className="navbar-item" href="/todolist">
                             To-Do List
                         </a>
+                        <a className="navbar-item" href="/addclass">
+                            +Add Class
+                        </a>
                     </div>
                     <div className="navbar-item has-dropdown is-hoverable">
                         <a className="navbar-link" href="/login">
@@ -32,7 +44,7 @@ export default function NavbarComponent() {
                             <a className="navbar-item" href="#">
                                 Profile
                                 </a>
-                            <a className="navbar-item" href="#">
+                            <a className="navbar-item" href="#" onClick={logoutHandler}>
                                 Log Out
                                 </a>
                         </div>

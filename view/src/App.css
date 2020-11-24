@@ -49,6 +49,7 @@ body {
 
 .calendar {
   margin: 4px 100px;
+  background-color: #000000;
 }
 
 .title {
@@ -90,3 +91,15 @@ body {
   max-height:none!important; 
 }
 
+<<<<<<< HEAD
+=======
+.separator1{
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+
+.addcoursepage{
+  background-color: #8ea4ed;
+}
+>>>>>>> f8ab12d5668a585823c1d93c99b06921d6a725cc

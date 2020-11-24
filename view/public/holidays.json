@@ -1,353 +1,218 @@
 [
   {
-    "id": 1,
-    "name": "Fall 2020 Final Examination Period Ends",
-    "description": "Last final examinations given by the university for the Fall 2020 semester.",
-    "date": {
-      "month": "November",
-      "day": "24",
-      "year": "2020",
-      "start time": "8:00AM",
-      "end time": "10:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-registration-begins-for-all-graduate-degree-seeking-post-baccalaureate-and-professional-students-for-undergraduate-students-with-8-or-more-terms-in-residence/"
+    "id": "unc-1",
+    "title": "Fall 2020 Final Examination Period Ends",
+    "description": "Last final examinations given by the university for the Fall 2020 semester. More Information can be found here: https://registrar.unc.edu/event/spring-2021-registration-begins-for-all-graduate-degree-seeking-post-baccalaureate-and-professional-students-for-undergraduate-students-with-8-or-more-terms-in-residence/",
+    "start": "2020-11-24T08:00",
+    "end": "2020-11-24T22:00",
+    "allDay": true
   },
   {
-    "id": 2,
-    "name": "Spring 2021 Registration Begins",
-    "description": "Spring 2021 Registration begins for all degree seeking students with 8+ terms in residence. 7 terms in residence begins 12/01. 6 terms in residence begins 12/02. 5 terms in residence begins 12/03. 4 terms in residence begins 12/04. 3 terms in residence begins 12/07. 2 terms in residence begins 12/08. 1 term in residence begins 12/09. 0 terms in residence begins 12/10",
-    "date": {
-      "month": "November",
-      "day": "30",
-      "year": "2020",
-      "start time": "8:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-registration-begins-for-all-graduate-degree-seeking-post-baccalaureate-and-professional-students-for-undergraduate-students-with-8-or-more-terms-in-residence/"
+    "id": "unc-2",
+    "title": "Spring 2021 Registration Begins",
+    "description": "Spring 2021 Registration begins for all degree seeking students with 8+ terms in residence. 7 terms in residence begins 12/01. 6 terms in residence begins 12/02. 5 terms in residence begins 12/03. 4 terms in residence begins 12/04. 3 terms in residence begins 12/07. 2 terms in residence begins 12/08. 1 term in residence begins 12/09. 0 terms in residence begins 12/10. More  info can be found: https://registrar.unc.edu/event/spring-2021-registration-begins-for-all-graduate-degree-seeking-post-baccalaureate-and-professional-students-for-undergraduate-students-with-8-or-more-terms-in-residence/",
+    "start": "2020-11-30T08:00",
+    "end": "2020-11-30T23:59",
+    "allDay": true
   },
   {
-    "id": 3,
-    "name": "Maximum Enrollment Increase",
-    "description": "Undergraduate maximum credit limit increases from 17 to 18 credit hours for full-time students.",
-    "date": {
-      "month": "December",
-      "day": "12",
-      "year": "2020",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/max-enrollment-increase/"
+    "id": "unc-3",
+    "title": "Maximum Enrollment Increase",
+    "description": "Undergraduate maximum credit limit increases from 17 to 18 credit hours for full-time students. More information found: https://registrar.unc.edu/event/max-enrollment-increase/",
+    "start": "2020-12-12T00:00",
+    "end": "2020-12-12T23:59",
+    "allDay": true
   },
   {
-    "id": 4,
-    "name": "First Day of Classes",
-    "description": "First day of the 2021 Spring semester for all students. Last day to enroll in tuition installment payment plan. Late registration begins ($20 fee).",
-    "date": {
-      "month": "January",
-      "day": "19",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-classses-begin/"
+    "id": "unc-4",
+    "title": "First Day of Classes",
+    "description": "First day of the 2021 Spring semester for all students. Last day to enroll in tuition installment payment plan. Late registration begins ($20 fee). More information found: https://registrar.unc.edu/event/spring-2021-classses-begin/",
+    "start": "2020-01-19T00:00",
+    "end": "2020-01-19T23:59",
+    "allDay": true
   },
   {
-    "id": 5,
-    "name": "Last Day of Add/Drop Period",
-    "description": "Last day to add or drop a class without showing it on the student's transcript. Last day for students to enroll in a class on ConnectCarolina",
-    "date": {
-      "month": "January",
-      "day": "25",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/last-day-for-all-students-to-add-a-course-to-their-schedule-in-connectcarolina-for-spring/"
+    "id": "unc-5",
+    "title": "Last Day of Add/Drop Period",
+    "description": "Last day to add or drop a class without showing it on the student's transcript. Last day for students to enroll in a class on ConnectCarolina. More information found: https://registrar.unc.edu/event/last-day-for-all-students-to-add-a-course-to-their-schedule-in-connectcarolina-for-spring/",
+    "start": "2020-01-25T00:00",
+    "end": "2020-01-25T23:59",
+    "allDay": true
   },
   {
-    "id": 6,
-    "name": "Last Day to Be Removed From a Waitlist",
-    "description": "Students will be moved into any available seats in Spring classes for the last time.",
-    "date": {
-      "month": "January",
-      "day": "26",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/waitlist-purged/"
+    "id": "unc-6",
+    "title": "Last Day to Be Removed From a Waitlist",
+    "description": "Students will be moved into any available seats in Spring classes for the last time. More information found: https://registrar.unc.edu/event/waitlist-purged/",
+    "start": "2020-01-26T00:00",
+    "end": "2020-01-26T23:59",
+    "allDay": true
   },
   {
-    "id": 7,
-    "name": "Off-Record Course Drop Deadline",
+    "id": "unc-7",
+    "title": "Off-Record Course Drop Deadline",
     "description": "Last Day to Drop a Class with No Record. Last day for students or schools/dept. to drop a class in ConnectCarolina and reduce course load, with tuition adjusted and no record of the class. Full time students must maintain 12 credit hours. Courses dropped after this date will show on the students transcript with a W.",
-    "date": {
-      "month": "February",
-      "day": "1",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "5:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/undergraduate-class-drop-no-record-period-ends-5pm/"
+    "start": "2020-01-26T00:00",
+    "end": "2020-01-26T17:00",
+    "allDay": true
   },
   {
-    "id": 8,
-    "name": "On-Record Course Drop Deadline",
-    "description": "Drop transactions processed between weeks 3-8 will remain on the student’s record with a grade of withdrawal. No tuition refund. Courses dropped after this date will receive a grade of incomplete.",
-    "date": {
-      "month": "March",
-      "day": "16",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/last-day-for-all-undergraduate-students-to-drop-courses-in-connectcarolina/"
+    "id": "unc-8",
+    "title": "Off-Record Course Drop Deadline",
+    "description": "Drop transactions processed between weeks 3-8 will remain on the student’s record with a grade of withdrawal. No tuition refund. Courses dropped after this date will receive a grade of incomplete. More information: https://registrar.unc.edu/event/last-day-for-all-undergraduate-students-to-drop-courses-in-connectcarolina/",
+    "start": "2021-03-16T00:00",
+    "end": "2021-03-16T23:59",
+    "allDay": true
   },
   {
-    "id": 9,
-    "name": "Pass/Fail Deadline",
-    "description": "Last day for all Undergraduate Students to submit Pass/Fail declarations.",
-    "date": {
-      "month": "March",
-      "day": "16",
-      "year": "2021",
-      "start time": "8:00AM",
-      "end time": "5:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/last-day-for-all-undergraduate-students-to-submit-pass-fail-declarations-2/"
+    "id": "unc-9",
+    "title": "Pass/Fail Deadline",
+    "description": "Last day for all Undergraduate Students to submit Pass/Fail declarations. More information: https://registrar.unc.edu/event/last-day-for-all-undergraduate-students-to-submit-pass-fail-declarations-2/",
+    "start": "2021-03-16T08:00",
+    "end": "2021-03-16T17:00",
+    "allDay": true
   },
   {
-    "id": 10,
-    "name": "No Classes: Easter",
+    "id": "unc-10",
+    "title": "No Classes: Easter",
     "description": "Easter Holiday",
-    "date": {
-      "month": "April",
-      "day": "2",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/easter-holiday-no-classes/"
+    "start": "2021-02-04T00:00",
+    "end": "2021-02-04T23:59",
+    "allDay": true
   },
   {
-    "id": 11,
-    "name": "No Classes: Wellness Day",
-    "description": "Mental Health and Wellness Day. No classes held.",
-    "date": {
-      "month": "February",
-      "day": "15",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://www.dailytarheel.com/article/2020/10/breaking-spring-semester-1008"
+    "id": "unc-11",
+    "title": "No Classes: Wellness Day",
+    "description": "Mental Health and Wellness Day. No classes held. More info: https://www.dailytarheel.com/article/2020/10/breaking-spring-semester-1008",
+    "start": "2021-02-15T00:00",
+    "end": "2021-02-15T23:59",
+    "allDay": true
   },
   {
-    "id": 12,
-    "name": "No Classes: Wellness Day",
-    "description": "Mental Health and Wellness Day. No classes held.",
-    "date": {
-      "month": "February",
-      "day": "16",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://www.dailytarheel.com/article/2020/10/breaking-spring-semester-1008"
+    "id": "unc-12",
+    "title": "No Classes: Wellness Day",
+    "description": "Mental Health and Wellness Day. No classes held. More info: https://www.dailytarheel.com/article/2020/10/breaking-spring-semester-1008",
+    "start": "2021-02-16T00:00",
+    "end": "2021-02-16T23:59",
+    "allDay": true
   },
   {
-    "id": 13,
-    "name": "No Classes: Wellness Day",
-    "description": "Mental Health and Wellness Day. No classes held.",
-    "date": {
-      "month": "March",
-      "day": "11",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://www.dailytarheel.com/article/2020/10/breaking-spring-semester-1008"
+    "id": "unc-13",
+    "title": "No Classes: Wellness Day",
+    "description": "Mental Health and Wellness Day. No classes held. More info: https://www.dailytarheel.com/article/2020/10/breaking-spring-semester-1008",
+    "start": "2021-03-11T00:00",
+    "end": "2021-03-11T23:59",
+    "allDay": true
   },
   {
-    "id": 14,
-    "name": "No Classes: Wellness Day",
-    "description": "Mental Health and Wellness Day. No classes held.",
-    "date": {
-      "month": "March",
-      "day": "12",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://www.dailytarheel.com/article/2020/10/breaking-spring-semester-1008"
+    "id": "unc-14",
+    "title": "No Classes: Wellness Day",
+    "description": "Mental Health and Wellness Day. No classes held. More info: https://www.dailytarheel.com/article/2020/10/breaking-spring-semester-1008",
+    "start": "2021-03-12T00:00",
+    "end": "2021-03-12T23:59",
+    "allDay": true
   },
   {
-    "id": 15,
-    "name": "No Classes: Wellness Day",
-    "description": "Mental Health and Wellness Day. No classes held.",
-    "date": {
-      "month": "April",
-      "day": "5",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://www.dailytarheel.com/article/2020/10/breaking-spring-semester-1008"
+    "id": "unc-15",
+    "title": "No Classes: Wellness Day",
+    "description": "Mental Health and Wellness Day. No classes held. More info: https://www.dailytarheel.com/article/2020/10/breaking-spring-semester-1008",
+    "start": "2021-04-05T00:00",
+    "end": "2021-04-05T23:59",
+    "allDay": true
   },
   {
-    "id": 16,
-    "name": "Last Day of Classes",
-    "description": "Last day of the 2021 Spring semester for all students.",
-    "date": {
-      "month": "May",
-      "day": "5",
-      "year": "2021",
-      "start time": "8:00AM",
-      "end time": "9:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-semester-classes-end-9/"
+    "id": "unc-16",
+    "title": "Last Day of Classes",
+    "description": "Last day of the 2021 Spring semester for all students. More  info: https://registrar.unc.edu/event/spring-semester-classes-end-9/",
+    "start": "2021-05-05T08:00",
+    "end": "2021-05-05T21:00",
+    "allDay": true
   },
   {
-    "id": 17,
-    "name": "Reading Day #1",
-    "description": "No classes held, designated for final exam preparation.",
-    "date": {
-      "month": "May",
-      "day": "6",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-reading-days/"
+    "id": "unc-17",
+    "title": "Reading Day #1",
+    "description": "No classes held, designated for final exam preparation. More info: https://registrar.unc.edu/event/spring-2021-reading-days/",
+    "start": "2021-05-06T00:00",
+    "end": "2021-05-06T23:59",
+    "allDay": true
   },
   {
-    "id": 18,
-    "name": "Reading Day #2",
-    "description": "No classes held, designated for final exam preparation.",
-    "date": {
-      "month": "May",
-      "day": "12",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-reading-day/"
+    "id": "unc-18",
+    "title": "Reading Day #2",
+    "description": "No classes held, designated for final exam preparation.  More info: https://registrar.unc.edu/event/spring-2021-reading-day/",
+    "start": "2021-05-12T00:00",
+    "end": "2021-05-12T23:59",
+    "allDay": true
   },
   {
-    "id": 19,
-    "name": "Final Exams: Day 1",
+    "id": "unc-19",
+    "title": "Final Exams: Day 1",
     "description": "Final examinations administered according to the schedule found here: ",
-    "date": {
-      "month": "May",
-      "day": "7",
-      "year": "2021",
-      "start time": "8:00AM",
-      "end time": "5:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-semester-examination-days/"
+    "start": "2021-05-07T08:00",
+    "end": "2021-05-07T22:00",
+    "allDay": true
   },
   {
-    "id": 20,
-    "name": "Final Exams: Day 2",
+    "id": "unc-20",
+    "title": "Final Exams: Day 2",
     "description": "Final examinations administered according to the schedule found here: ",
-    "date": {
-      "month": "May",
-      "day": "8",
-      "year": "2021",
-      "start time": "8:00AM",
-      "end time": "5:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-semester-examination-days-2/"
+    "start": "2021-05-08T08:00",
+    "end": "2021-05-08T22:00",
+    "allDay": true
   },
   {
-    "id": 21,
-    "name": "Final Exams: Day 3",
+    "id": "unc-21",
+    "title": "Final Exams: Day 3",
     "description": "Final examinations administered according to the schedule found here: ",
-    "date": {
-      "month": "May",
-      "day": "10",
-      "year": "2021",
-      "start time": "8:00AM",
-      "end time": "5:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-semester-examination-day/"
+    "start": "2021-05-10T08:00",
+    "end": "2021-05-10T22:00",
+    "allDay": true
   },
   {
-    "id": 22,
-    "name": "Final Exams: Day 4",
+    "id": "unc-22",
+    "title": "Final Exams: Day 4",
     "description": "Final examinations administered according to the schedule found here: ",
-    "date": {
-      "month": "May",
-      "day": "11",
-      "year": "2021",
-      "start time": "8:00AM",
-      "end time": "5:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-semester-examination-day-2/"
+    "start": "2021-05-11T08:00",
+    "end": "2021-05-11T22:00",
+    "allDay": true
   },
   {
-    "id": 23,
-    "name": "Final Exams: Day 5",
+    "id": "unc-23",
+    "title": "Final Exams: Day 5",
     "description": "Final examinations administered according to the schedule found here: ",
-    "date": {
-      "month": "May",
-      "day": "13",
-      "year": "2021",
-      "start time": "8:00AM",
-      "end time": "5:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-semester-examination-day-3/"
+    "start": "2021-05-13T08:00",
+    "end": "2021-05-13T22:00",
+    "allDay": true
   },
   {
-    "id": 24,
-    "name": "Final Exams: Day 6",
+    "id": "unc-24",
+    "title": "Final Exams: Day 6",
     "description": "Final examinations administered according to the schedule found here: ",
-    "date": {
-      "month": "May",
-      "day": "14",
-      "year": "2021",
-      "start time": "8:00AM",
-      "end time": "5:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-semester-examination-day-4/"
+    "start": "2021-05-14T08:00",
+    "end": "2021-05-14T22:00",
+    "allDay": true
   },
   {
-    "id": 25,
-    "name": "Spring 2021 Commencement",
-    "description": "Final examinations administered according to the schedule found here: ",
-    "date": {
-      "month": "May",
-      "day": "16",
-      "year": "2021",
-      "start time": "12:00PM",
-      "end time": "5:00PM"
-    },
-    "unc-link": "https://registrar.unc.edu/event/spring-2021-commencement/"
+    "id": "unc-25",
+    "title": "Spring 2021 Commencement",
+    "description": "Commencement for the Class of Spring 2021 Graduates. More info: https://registrar.unc.edu/event/spring-2021-commencement/",
+    "start": "2021-05-16T08:00",
+    "end": "2021-05-16T22:00",
+    "allDay": true
   },
   {
-    "id": 26,
-    "name": "Study Abroad Applications Due",
-    "description": "Majority of study abroad applications, recommendations, and application fees due.",
-    "date": {
-      "month": "February",
-      "day": "10",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://heelsabroad.unc.edu/index.cfm?FuseAction=Programs.ListAll"
+    "id": "unc-26",
+    "title": "Study Abroad Applications Due",
+    "description": "Majority of study abroad applications, recommendations, and application fees due. More info: https://heelsabroad.unc.edu/index.cfm?FuseAction=Programs.ListAll",
+    "start": "2021-02-10T08:00",
+    "end": "2021-02-10T22:00",
+    "allDay": true
   },
   {
-    "id": 27,
-    "name": "Spring Tuition Due",
-    "description": "Tuition and Fees Due for all students who have registered before the Billing Date. Students who register by the Billing Date must pay or defer tuition and fees by this date or their schedule will be cancelled and all their courses dropped.",
-    "date": {
-      "month": "January",
-      "day": "12",
-      "year": "2021",
-      "start time": "12:00AM",
-      "end time": "11:59PM"
-    },
-    "unc-link": "https://cashier.unc.edu/tuition-fees/important-dates/"
+    "id": "unc-27",
+    "title": "Spring Tuition Due",
+    "description": "Tuition and Fees Due for all students who have registered before the Billing Date. Students who register by the Billing Date must pay or defer tuition and fees by this date or their schedule will be cancelled and all their courses dropped. More info: https://cashier.unc.edu/tuition-fees/important-dates/",
+    "start": "2021-01-12T08:00",
+    "end": "2021-01-12T22:00",
+    "allDay": true
   }
 ]
