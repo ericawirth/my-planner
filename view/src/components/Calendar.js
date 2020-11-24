@@ -10,8 +10,6 @@ import { authMiddleWare } from '../util/auth';
 import { useHistory } from "react-router-dom";
 import ClassList from './ClassList';
 
-const dotenv = require('dotenv');
-dotenv.config();
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar(props) {
