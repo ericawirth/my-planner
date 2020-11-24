@@ -22,24 +22,14 @@ const ClassTempData = [
   { id: 0, classTitle: "Comp555", color: "Green" },
 ];
 
-let CalendarData = [
-  { id: "1237", title: "Smoke & Turkey with KMP", eventType: "Event", classDetails: "None", start: '2020-11-26T00:00', end: '2020-11-26T00:00', allDay: true },
-]
-
-
-
 function App() {
-  useEffect(() => {
-    console.log('change');
-  }, [CalendarData]);
-
   return (
     <div className="App">
       <Router>
         <NavbarComponent />
         <Switch>
           <Route exact path="/"> <Redirect to="/calendar" /> </Route>
-          <Route exact path="/calendar" render={() => <CalendarView classInfo={ClassTempData} callenData={CalendarData} />} />
+          <Route exact path="/calendar" component={CalendarView} />
           <Route exact path="/todolist" render={() => <TodoView tasks={DATA} />} />
           <Route exact path="/login" component={LoginView} />
           <Route exact path="/addclass" component={AddClassView}/>

@@ -11,11 +11,12 @@ import { useHistory } from "react-router-dom";
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar(props) {
-    const [event, setEvent] = useState(props.callenData);
+    const [event, setEvent] = useState([{}]);
     const [modalError, setmodalError] = useState(false);
     const [modalState, setmodalState] = useState(false);
     const [ExistingEvent, setExistingEvent] = useState(false);
-    const [ClassInfo, setClassInfo] = useState(props.classInfo);
+    const [ClassInfo, setClassInfo] = useState([]);
+    const [currentID, setcurrentID] = useState("");
     let [responseData, setResponseData] = useState('');
     let history = useHistory();
     const [newEvent, setnewEvent] = useState({
@@ -41,7 +42,11 @@ export default function Calendar(props) {
                 });
             })
             .catch((error) => {
-                console.log(error)
+                console.log(error.response.status)
+                if (error.response.status === 403) {
+                    localStorage.removeItem('AuthToken');
+                    history.push('/login');
+                }
             })
     }, [])
 
@@ -95,11 +100,13 @@ export default function Calendar(props) {
                     end: event.data.end,
                     eventType: event.data.eventType,
                     classDetails: event.data.classDetails,
-                    backgroundColor: event.data.classDetails &&  event.data.classDetails.color ?  event.data.classDetails.color : " ",
+                    backgroundColor: event.data.classDetails && event.data.classDetails.color ? event.data.classDetails.color : " ",
                     allDay: event.data.allDay ? true : false,
                 });
             });
+
             console.log('Mapped');
+            mappedEvents.push({ id: "1237", title: "Smoke & Turkey with KMP", eventType: "Event", classDetails: "None", start: '2020-11-26T00:00', end: '2020-11-26T00:00', allDay: true });
             setEvent(mappedEvents);
         }
         console.log('Notmapped');
@@ -137,6 +144,54 @@ export default function Calendar(props) {
         });
         setmodalError("");
         toggleModal();
+    }
+
+    const handleEdit = (event) => {
+        authMiddleWare(history);
+        if (newEvent.id) {
+
+            const updateEvent = {
+                title: titleText,
+                body: newEvent.body,
+                eventType: newEvent.eventType,
+                classDetails: newEvent.classDetails,
+                start: newEvent.start,
+                end: newEvent.end,
+                allDay: newEvent.allDay,
+            };
+            let options = {
+                url: `/event/${newEvent.id}`,
+                method: 'put',
+                data: updateEvent
+            };
+            console.log("put");
+            console.log(newEvent);
+            const authToken = localStorage.getItem('AuthToken');
+            axios.defaults.headers.common = { Authorization: `${authToken}` };
+            axios(options)
+                .then(() => {
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            addLocalEventToCalendar(true);
+        };
+    }
+
+    const handleDelete = (event) => {
+        authMiddleWare(history);
+        if (newEvent.id) {
+            const authToken = localStorage.getItem('AuthToken');
+            axios.defaults.headers.common = { Authorization: `${authToken}` };
+            axios
+			.delete(`event/${newEvent.id}`)
+			.then(() => {
+			})
+			.catch((err) => {
+				console.log(err);
+            });
+            deleteLocalEvent();
+        };
     }
 
     function handleChange(e) {
@@ -214,6 +269,13 @@ export default function Calendar(props) {
                 console.log(error);
             });
 
+        addLocalEventToCalendar();
+    }
+
+    function addLocalEventToCalendar(isEdit) {
+        if (isEdit) {
+            deleteLocalEvent();
+        }
         if (titleText === "") {
             setmodalError("Set A Title")
         }
@@ -227,7 +289,7 @@ export default function Calendar(props) {
         }
     }
 
-    function deleteEvent() {
+    function deleteLocalEvent() {
         let eventsArr = event.filter(e => {
             return e.id !== newEvent.id;
         });
@@ -357,19 +419,13 @@ export default function Calendar(props) {
                     <footer className="modal-card-foot p-1">
                         <div className="control">
                             {ExistingEvent ?
-                                <button className="button is-small is-primary ml-4" onClick={e => {
-                                    deleteEvent();
-                                    addEvent();
-                                }}>Update</button> :
+                                <button className="button is-small is-primary ml-4" onClick={handleEdit}>Update</button> :
                                 //ELSE
                                 <button className="button is-small is-primary ml-4" onClick={e => {
                                     addEvent();
                                 }}>Save</button>
                             }
-                            {ExistingEvent ? <button className="button is-small is-danger ml-4" onClick={e => {
-                                deleteEvent();
-                            }
-                            }>Delete</button> : null}
+                            {ExistingEvent ? <button className="button is-small is-danger ml-4" onClick={handleDelete}>Delete</button> : null}
 
                         </div>
                     </footer>
