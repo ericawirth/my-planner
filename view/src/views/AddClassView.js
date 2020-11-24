@@ -86,7 +86,7 @@ export default function AddClassView() {
             .then((e) => {
                 responseId = e.data.id
                 currentClass.id = responseId ? responseId : nanoid();
-                setAllClasses(oldArray => [...oldArray, currentClass]);
+                setAllClasses(oldArray => [...oldArray, userClass]);
                 setCurrentClass({
                     id: "",
                     classTitle: "",
