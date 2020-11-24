@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { debounce } from "throttle-debounce";
 
 export default function TodoForm(props) {
   
@@ -16,7 +15,7 @@ export default function TodoForm(props) {
       return;
     }
     props.addTask(task);
-    //setTask({}); 
+    setTask({subject:"", taskName:"", dueDate:"", time:""}); 
   }
 
 

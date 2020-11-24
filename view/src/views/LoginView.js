@@ -100,8 +100,8 @@ export default function LoginView(props) {
                         <div className="tile is-child is-vertical notification is-primary">
                             <h1 className="title">Welcome,</h1>
                             <h2 className="subtitle">Please login to access your planner!</h2>
-                            <figure className="image is-3by1">
-                                <img src="https://bulma.io/images/placeholders/640x480.png"></img>
+                            <figure className="image">
+                                <img className="kmpimage" src="https://www.cs.unc.edu/~jeffay/images/dirt/ketan-at-desk.jpg"></img>
                             </figure>
                         </div>
                         <div className="tile is-child notification is-warning">
@@ -130,7 +130,7 @@ export default function LoginView(props) {
                             <h1 className="signuplabel">Don't have an account? Sign Up!</h1>
                             <form>
                                 <div className="">
-                                    <label className="label1">Create Email:</label>
+                                    <label className="label1">Email:</label>
                                     <div className="">
                                         <input className="" type="text" placeholder="checkm8" name="email" onChange={handleRegisterChange}></input>
                                     </div>

@@ -54,7 +54,7 @@ function usePrevious(value) {
           >
             Cancel
           </button>
-          <button type="submit" className="btn btn__primary todo-edit">
+          <button type="submit" className="btn btn__primary todo-save">
             Save
           </button>
         </div>
@@ -70,14 +70,20 @@ function usePrevious(value) {
               defaultChecked={props.completed}
               onChange={() => props.toggleTaskCompleted(props.id)}
             />
-            <label className="todo-label" htmlFor={props.id}>
-                {props.subject}: {props.taskName}
+            <label className="todo-label is-capitalized" htmlFor={props.id}>
+                {props.subject}: {props.taskName} 
             </label>
+            <br></br>
+            <label className="todo-label-info">Date: {props.dueDate}
+            </label>
+            <br></br>
+            <label className="todo-label-info">Time: {props.time}
+            </label> 
         </div>
         <div className="btn-group">
           <button
             type="button"
-            className="btn btn_e_d"
+            className="btn btn_e_d" id="todo-edit"
             onClick={() => setEditing(true)}
             ref={editButtonRef}
             >
