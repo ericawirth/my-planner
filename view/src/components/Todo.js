@@ -74,11 +74,8 @@ function usePrevious(value) {
                 {props.subject}: {props.title} 
             </label>
             <br></br>
-            <label className="todo-label-info">Date: {props.start}
+            <label className="todo-label-info">Date: {props.start? new Date(props.start).toUTCString(): " "}
             </label>
-            <br></br>
-            <label className="todo-label-info">Time: {props.time}
-            </label> 
         </div>
         <div className="btn-group">
           <button

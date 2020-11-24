@@ -45,21 +45,17 @@ exports.getOneEvent = (request, response) => {
 };
 
 exports.postOneEvent = (request, response) => {
-    if (request.body.body.trim() === '') {
-        return response.status(400).json({ body: 'Must not be empty' });
-    }
-
-    if (request.body.title.trim() === '') {
-        return response.status(400).json({ title: 'Must not be empty' });
-    }
 
     const newEventItem = {
-        title: request.body.title,
+        subject: request.body.subject,
         email: request.user.email,
+        title: request.body.title,
+        start: request.body.start,
+        time: request.body.time,
+        completed: request.body.completed,
         body: request.body.body,
         eventType: request.body.eventType,
         classDetails: request.body.classDetails,
-        start: request.body.start,
         end: request.body.end,
         allDay: request.body.allDay,
         createdAt: new Date().toISOString()

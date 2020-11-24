@@ -35,7 +35,7 @@ export default function TodoView(props) {
     const authToken = localStorage.getItem('AuthToken');
     axios.defaults.headers.common = { Authorization: `${authToken}` };
     axios
-      .get('/todos')
+      .get('/events')
       .then((response) => {
         setResponseData({
           todos: response.data
@@ -58,9 +58,8 @@ export default function TodoView(props) {
   }, [responseData])
 
   function addTodos(task) {
-    console.log('taskss', task);
     if (task && task.length && task.length > 0) {
-      let mappedTasks = task.map(tsk => {
+      let mappedTasks = task.filter(f => f.data.eventType && f.data.eventType === 'Todo').map(tsk => {
         return ({
           id: tsk.id, subject: tsk.data.subject, title: tsk.data.title,
           start: tsk.data.start, time: tsk.data.time, completed: tsk.data.completed
@@ -77,16 +76,11 @@ export default function TodoView(props) {
     })
     if (editedTask && editedTask.length && editedTask.length > 0) {
       let tempEdited = editedTask[0];
-      console.log('here', tempEdited);
       const updateEvent = {
-        subject: tempEdited.subject,
         title: tempEdited.title,
-        start: tempEdited.start,
-        time: tempEdited.time,
-        completed: tempEdited.completed,
       };
       let options = {
-        url: `/todo/${tempEdited.id}`,
+        url: `/event/${tempEdited.id}`,
         method: 'put',
         data: updateEvent,
       };
@@ -121,7 +115,7 @@ export default function TodoView(props) {
       const authToken = localStorage.getItem('AuthToken');
       axios.defaults.headers.common = { Authorization: `${authToken}` };
       axios
-        .delete(`todo/${id}`)
+        .delete(`event/${id}`)
         .then(() => {
         })
         .catch((err) => {
@@ -179,12 +173,13 @@ export default function TodoView(props) {
 
   function addTask(task) {
     authMiddleWare(history);
+    let newDate = task.start? new Date(task.start+'T'+task.time).toISOString(): '';
     let newTask = {
-      subject: task.subject, title: task.title,
-      start: task.start, time: task.time, completed: false
+      subject: task.subject, title: task.title, end: '', classDetails: '', backgroundColor: '', allDay: false, 
+      start: newDate, time: task.time, completed: false, eventType: 'Todo', body: '',
     };
 
-    let options = { url: '/todo', method: 'post', data: newTask };
+    let options = { url: '/event', method: 'post', data: newTask };
     let responseId = "";
     const authToken = localStorage.getItem('AuthToken');
     axios.defaults.headers.common = { Authorization: `${authToken}` };

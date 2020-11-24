@@ -18,6 +18,7 @@ export default function Calendar(props) {
     const [ExistingEvent, setExistingEvent] = useState(false);
     const [ClassInfo, setClassInfo] = useState([]);
     const [classList, setClassList] = useState([{}]);
+    const [todoList, setTodoList] = useState([{}]);
     const [currentID, setcurrentID] = useState("");
     let [responseData, setResponseData] = useState('');
     let history = useHistory();
@@ -62,6 +63,18 @@ export default function Calendar(props) {
                     history.push('/login');
                 }
             })
+            // axios
+            // .get('/todos')
+            // .then((response) => {
+            //     setTodoList(response.data);
+            // })
+            // .catch((error) => {
+            //     console.log(error.response.status)
+            //     if (error.response.status === 403) {
+            //         localStorage.removeItem('AuthToken');
+            //         history.push('/login');
+            //     }
+            // })
     }, [])
 
     useEffect(() => {
@@ -72,6 +85,9 @@ export default function Calendar(props) {
     useEffect(() => {
         addEvents(responseData);
     }, [responseData])
+    // useEffect(() => {
+    //     addTodos(todoList);
+    // }, [todoList])
 
     function parseDateTime(dateTime) {
         let date = new Date(dateTime);
@@ -95,6 +111,19 @@ export default function Calendar(props) {
             time = "00:00"
         return startDate + 'T' + startTime;
     }
+
+    // function addTodos(todos){
+    //     if(todos && todos.length && todos.length > 0){
+    //         let mappedTodos = todos.map(todo => {
+    //             return({
+    //                 id: todo.id,
+    //                 title: todo.data.subject + " "+todo.data.title,
+    //                 start: new Date(todo.data.start + "T"+ todo.data.time),
+    //                 eventType: 'Todo',
+    //             });
+    //         })
+    //     }
+    // }
 
     function addEvents(events) {
         let eventsData = events.events
@@ -242,6 +271,7 @@ export default function Calendar(props) {
             ...newEvent,
             title: titleText,
         });
+        console.log('class det ', newEvent.classDetails)
         const userEvent = {
             title: titleText,
             body: newEvent.body,
@@ -250,6 +280,9 @@ export default function Calendar(props) {
             start: newEvent.start,
             end: newEvent.end,
             allDay: newEvent.allDay,
+            completed: false,
+            time: '',
+            subject: newEvent.classDetails && newEvent.classDetails.data && newEvent.classDetails.data.classTitle? newEvent.classDetails.data.classTitle: '',
         };
         let options = {
             url: '/event',

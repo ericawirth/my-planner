@@ -53,6 +53,11 @@ exports.postOneTodo = (request, response) => {
         start: request.body.start,
         time: request.body.time,
         completed: request.body.completed,
+        body: request.body.body,
+        eventType: request.body.eventType,
+        classDetails: request.body.classDetails,
+        end: request.body.end,
+        allDay: request.body.allDay,
         createdAt: new Date().toISOString()
     }
     db.collection('todos')
