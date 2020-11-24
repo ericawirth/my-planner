@@ -2,6 +2,20 @@
   overflow: visible;
 }
 
+#todo-edit {
+  background-color: rgb(93, 117, 197);
+  color: white;
+  border-color: rgb(93, 117, 197);
+}
+
+.todo-label {
+  font-size: 30px;
+}
+
+.todo-label-info {
+  font-size: 20px;
+}
+
 .form-group > input[type="text"] {
     display: inline-block;
     margin-top: 0.4rem;
@@ -9,12 +23,13 @@
   .btn {
     padding: 0.8rem 1rem 0.7rem;
     color: hsl(0, 0%, 21%);
-    border: 0.2rem solid rgb(93, 117, 197);
     cursor: pointer;
     text-transform: uppercase;
     border-radius: 5px;
   }
   .btn.toggle-btn {
+    border-color: white;
+    background-color: white;
     border-width: 2px;
     font-weight: bold;
     color:hsl(0, 0%, 21%);
@@ -24,12 +39,14 @@
     border-width: 3px;
     font-weight: bold;
   }
+
   .btn__danger {
     color: #fff;
     background-color: hsl(0, 0%, 21%);
+    border-color: hsl(0, 0%, 21%);
   }
   .btn__filter {
-    border-color: lightgrey;
+    border-color: white;
   }
 
   .btn_e_d {
@@ -81,14 +98,15 @@
   }
 
 #list-heading {
-  color:hsl(0, 0%, 21%);
+  color:rgb(93, 117, 197);
   text-decoration: underline;
 }
 .list {
-  border: 10px solid white;
+  border: 10px solid hsl(0, 0%, 21%);
   border-radius: 2px;
   padding: 2%;
-  color: white;
+  color:hsl(0, 0%, 21%);
+  background-color: white;
 }
 
 
@@ -133,10 +151,9 @@
   .input__lg {
     max-width: 40%;
     padding: 2rem;
-    border: 2px solid rgb(93, 117, 197);;
+    border: 2px solid rgb(93, 117, 197);
   }
   .input__lg:focus {
-    border-color: #4d4d4d;
     box-shadow: inset 0 0 0 2px;
   }
   [class*="__lg"] {
@@ -170,8 +187,15 @@
     width: 100%;
     min-height: 4.4rem;
     padding: 0.4rem 0.8rem;
-    border: 2px solid #565656;
+    border: 2px solid;
   }
+
+  .todo-cancel {
+    background-color: rgb(93, 117, 197);
+    color: white;
+    border-color: rgb(93, 117, 197);
+  }
+
   .todo-text:focus {
     box-shadow: inset 0 0 0 2px;
   }
@@ -186,7 +210,6 @@
     display: block;
     position: relative;
     min-height: 44px;
-    padding-left: 40px;
     clear: left;
   }
   .c-cb > label::before,
@@ -206,7 +229,6 @@
     opacity: 0;
   }
   .c-cb > label {
-    font-size: inherit;
     font-family: inherit;
     line-height: inherit;
     display: inline-block;
@@ -223,7 +245,6 @@
   }
   .c-cb > input[type="checkbox"]:focus + label::before {
     border-width: 4px;
-    outline: 3px dashed #228bec;
   }
   .c-cb > label::after {
     box-sizing: content-box;
