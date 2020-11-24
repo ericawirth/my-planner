@@ -254,11 +254,11 @@ export default function Calendar(props) {
         axios.defaults.headers.common = { Authorization: `${authToken}` };
         axios(options)
             .then((e) => {
-                responseId = e.data.id
+                let responseId = e.data.id
                 console.log("Sent Event");
                 setnewEvent({
                     ...newEvent,
-                    id: responseId ? detail[0] : nanoid(),
+                    id: responseId ? responseId : nanoid(),
                 });
                 addLocalEventToCalendar();
             })
