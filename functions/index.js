@@ -24,7 +24,7 @@ const {
     editTodo,
 } = require('./APIs/todos')
 
-app.get('/events', auth, getAllTodos);
+app.get('/todos', auth, getAllTodos);
 app.post('/todo', auth, postOneTodo);
 app.get('/todo/:todoId', auth, getOneTodo);
 app.delete('/todo/:todoId', auth, deleteTodo);
