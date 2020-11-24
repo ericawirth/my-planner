@@ -64,26 +64,30 @@ export default function Calendar(props) {
                     history.push('/login');
                 }
             })
-            axios
-            .get('https://calendarific.com/api/v2/holidays?&api_key=' + process.env.REACT_APP_HLD_KEY + '&country=US&year=2020')
+        axios
+            .get('/holidays')
             .then((response) => {
-                console.log(response);
+                parseThirdPartApi(response.data.response.holidays);
             })
             .catch((error) => {
                 console.log(error)
+                if (error.response && error.response.status === 403) {
+                    localStorage.removeItem('AuthToken');
+                    history.push('/login');
+                }
             })
-            // axios
-            // .get('/todos')
-            // .then((response) => {
-            //     setTodoList(response.data);
-            // })
-            // .catch((error) => {
-            //     console.log(error.response.status)
-            //     if (error.response.status === 403) {
-            //         localStorage.removeItem('AuthToken');
-            //         history.push('/login');
-            //     }
-            // })
+        // axios
+        // .get('/todos')
+        // .then((response) => {
+        //     setTodoList(response.data);
+        // })
+        // .catch((error) => {
+        //     console.log(error.response.status)
+        //     if (error.response.status === 403) {
+        //         localStorage.removeItem('AuthToken');
+        //         history.push('/login');
+        //     }
+        // })
     }, [])
 
     useEffect(() => {
@@ -94,10 +98,27 @@ export default function Calendar(props) {
     useEffect(() => {
         addEvents(responseData);
     }, [responseData])
+
+    useEffect(() => {
+        console.log('event',event);
+    }, [event])
     // useEffect(() => {
     //     addTodos(todoList);
     // }, [todoList])
 
+    function parseThirdPartApi(data) {
+        let dates =[{}];
+        if (data.length && data.length > 0) {
+           dates = data.map(date => {
+                return ({
+                    title: date.name,
+                    start: date.date.iso,
+                    backgroundColor: 'green'
+                });
+            });
+            setEvent(oldArray => [...oldArray,...dates]);
+        }
+    }
     function parseDateTime(dateTime) {
         let date = new Date(dateTime);
         let newDate = "";
@@ -291,7 +312,7 @@ export default function Calendar(props) {
             allDay: newEvent.allDay,
             completed: false,
             time: '',
-            subject: newEvent.classDetails && newEvent.classDetails.data && newEvent.classDetails.data.classTitle? newEvent.classDetails.data.classTitle: '',
+            subject: newEvent.classDetails && newEvent.classDetails.data && newEvent.classDetails.data.classTitle ? newEvent.classDetails.data.classTitle : '',
         };
         let options = {
             url: '/event',
@@ -308,7 +329,7 @@ export default function Calendar(props) {
                     ...newEvent,
                     id: responseId ? responseId : nanoid(),
                 });
-                addLocalEventToCalendar(false,responseId);
+                addLocalEventToCalendar(false, responseId);
             })
             .catch((error) => {
                 toggleModal();
@@ -324,11 +345,11 @@ export default function Calendar(props) {
             setmodalError("Set A Title")
         }
         else if (newEvent.allDay) {
-            setEvent(oldArray => [...oldArray, { id: eventId? eventId: newEvent.id, allDay: newEvent.allDay, title: titleText, start: newEvent.start, end: newEvent.end, eventType: newEvent.eventType, classDetails: newEvent.classDetails, backgroundColor: newEvent.classDetails && newEvent.classDetails.data ? newEvent.classDetails.data.color : " " }]);
+            setEvent(oldArray => [...oldArray, { id: eventId ? eventId : newEvent.id, allDay: newEvent.allDay, title: titleText, start: newEvent.start, end: newEvent.end, eventType: newEvent.eventType, classDetails: newEvent.classDetails, backgroundColor: newEvent.classDetails && newEvent.classDetails.data ? newEvent.classDetails.data.color : " " }]);
             toggleModal();
         }
         else {
-            setEvent(oldArray => [...oldArray, { id: eventId? eventId: newEvent.id, allDay: newEvent.allDay, title: titleText, start: newEvent.start, end: newEvent.end, eventType: newEvent.eventType, classDetails: newEvent.classDetails }]);
+            setEvent(oldArray => [...oldArray, { id: eventId ? eventId : newEvent.id, allDay: newEvent.allDay, title: titleText, start: newEvent.start, end: newEvent.end, eventType: newEvent.eventType, classDetails: newEvent.classDetails }]);
             toggleModal();
         }
     }

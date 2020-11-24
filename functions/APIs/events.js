@@ -1,8 +1,6 @@
 const { db } = require('../util/admin');
 const cors = require('cors')({origin: true});
 var axios = require('axios');
-const dotenv = require('dotenv');
-dotenv.config();
 
 exports.getAllEvents = (request, response) => {
     db.collection('events')
@@ -27,12 +25,12 @@ exports.getAllEvents = (request, response) => {
 
 exports.getHolidayEvent = (request, response) => {
     cors(request, response, () => {
-        axios.get('https://calendarific.com/api/v2/holidays?&api_key=' + process.env.HLD_KEY + '&country=US&year=2020')
+        axios.get('https://calendarific.com/api/v2/holidays?&api_key=e97c3980b6041c03093289f6c5aab17271bc361c&country=US&year=2020&type=national')
         .then(r => {
           return response.send(r.data);
         })
         .catch( e => {
-          response.sendStatus(e);
+          return response.sendStatus(e);
         })
       })
 };
