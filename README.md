@@ -9,6 +9,7 @@
 ## My Planner Features:
 - Calendar Homepage
 - To-Do List
+- Course Organizer
 - Sign up and Login 
 
 ## How To Run My Planner Locally:
