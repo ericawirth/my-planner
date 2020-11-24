@@ -100,3 +100,11 @@ body {
 .addcoursepage{
   background-color: #8ea4ed;
 }
+
+.kmpimage{
+  max-width: 50%;
+  max-height: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
