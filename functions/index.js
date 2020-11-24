@@ -17,6 +17,20 @@ app.delete('/event/:eventId', auth, deleteEvent);
 app.put('/event/:eventId', auth, editEvent);
 
 const {
+    getAllTodos,
+    getOneTodo,
+    postOneTodo,
+    deleteTodo,
+    editTodo,
+} = require('./APIs/todos')
+
+app.get('/events', auth, getAllTodos);
+app.post('/todo', auth, postOneTodo);
+app.get('/todo/:todoId', auth, getOneTodo);
+app.delete('/todo/:todoId', auth, deleteTodo);
+app.put('/todo/:todoId', auth, editTodo);
+
+const {
     getAllClasses,
     getOneClass,
     postOneClass,

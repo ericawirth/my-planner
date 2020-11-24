@@ -4,18 +4,18 @@ export default function TodoForm(props) {
   
   const [task, setTask] = useState({
         subject: "",
-        taskName: "",
-        dueDate: "",
+        title: "",
+        start: "",
         time: "",
   });
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!task.taskName.trim()) {
+    if (!task.title.trim()) {
       return;
     }
     props.addTask(task);
-    setTask({subject:"", taskName:"", dueDate:"", time:""}); 
+    setTask({subject:"", title:"", start:"", time:""}); 
   }
 
 
@@ -43,9 +43,9 @@ export default function TodoForm(props) {
         type="text"
         id="new-todo-task"
         className="input input__lg"
-        name="taskName"
+        name="title"
         autoComplete="on"
-        value={task.taskName}
+        value={task.title}
         placeholder="Task"
         onChange={handleChange}
       />
@@ -53,9 +53,9 @@ export default function TodoForm(props) {
         type="date"
         id="new-todo-date"
         className="input input__lg"
-        name="dueDate"
+        name="start"
         autoComplete="off"
-        value={task.dueDate}
+        value={task.start}
         onChange={handleChange}
       />
       <input

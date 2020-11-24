@@ -35,7 +35,7 @@ function usePrevious(value) {
       <form className="stack-small" onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="todo-label" htmlFor={props.id}>
-            New name for {props.taskName}
+            New name for {props.title}
           </label>
           <input
             id={props.id}
@@ -71,10 +71,10 @@ function usePrevious(value) {
               onChange={() => props.toggleTaskCompleted(props.id)}
             />
             <label className="todo-label is-capitalized" htmlFor={props.id}>
-                {props.subject}: {props.taskName} 
+                {props.subject}: {props.title} 
             </label>
             <br></br>
-            <label className="todo-label-info">Date: {props.dueDate}
+            <label className="todo-label-info">Date: {props.start}
             </label>
             <br></br>
             <label className="todo-label-info">Time: {props.time}

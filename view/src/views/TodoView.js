@@ -50,7 +50,7 @@ export default function TodoView(props) {
         // if this task has the same ID as the edited task
           if (id === task.id) {
             //
-            return {...task, taskName: newName}
+            return {...task, title: newName}
           }
           return task;
         });
@@ -63,8 +63,8 @@ export default function TodoView(props) {
         <Todo
         id={task.id}
         subject={task.subject}
-        taskName={task.taskName}
-        dueDate={task.dueDate}
+        title={task.title}
+        start={task.start}
         time={task.time} 
         completed={task.completed}
         key={task.id}
@@ -84,8 +84,8 @@ export default function TodoView(props) {
       ));
     
       function addTask(task) {
-        const newTask = { id: "todo-" + nanoid(), subject: task.subject, taskName: task.taskName, 
-                        dueDate: task.dueDate, time: task.time, completed: false };
+        const newTask = { id: "todo-" + nanoid(), subject: task.subject, title: task.title, 
+                        start: task.start, time: task.time, completed: false };
         setTasks([...tasks, newTask]);
       }
     

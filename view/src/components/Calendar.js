@@ -8,6 +8,7 @@ import { nanoid } from "nanoid";
 import axios from 'axios';
 import { authMiddleWare } from '../util/auth';
 import { useHistory } from "react-router-dom";
+import ClassList from './ClassList';
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar(props) {
@@ -16,6 +17,7 @@ export default function Calendar(props) {
     const [modalState, setmodalState] = useState(false);
     const [ExistingEvent, setExistingEvent] = useState(false);
     const [ClassInfo, setClassInfo] = useState([]);
+    const [classList, setClassList] = useState([{}]);
     const [currentID, setcurrentID] = useState("");
     let [responseData, setResponseData] = useState('');
     let history = useHistory();
@@ -48,6 +50,18 @@ export default function Calendar(props) {
                     history.push('/login');
                 }
             })
+        axios
+            .get('/classes')
+            .then((response) => {
+                setClassList(response.data);
+            })
+            .catch((error) => {
+                console.log(error.response.status)
+                if (error.response.status === 403) {
+                    localStorage.removeItem('AuthToken');
+                    history.push('/login');
+                }
+            })
     }, [])
 
     useEffect(() => {
@@ -58,11 +72,6 @@ export default function Calendar(props) {
     useEffect(() => {
         addEvents(responseData);
     }, [responseData])
-
-    useEffect(() => {
-        console.log('eventzz');
-        console.log(event);
-    }, [event])
 
     function parseDateTime(dateTime) {
         let date = new Date(dateTime);
@@ -98,7 +107,7 @@ export default function Calendar(props) {
                     end: event.data.end,
                     eventType: event.data.eventType,
                     classDetails: event.data.classDetails,
-                    backgroundColor: event.data.classDetails && event.data.classDetails.color ? event.data.classDetails.color : " ",
+                    backgroundColor: event.data.classDetails && event.data.classDetails.data ? event.data.classDetails.data.color : " ",
                     allDay: event.data.allDay ? true : false,
                 });
             });
@@ -126,7 +135,6 @@ export default function Calendar(props) {
     const handleEventClick = (arg) => {
         setExistingEvent(true);
         titleText = arg.event.title;
-
         setnewEvent({
             ...newEvent,
             id: arg.event.id,
@@ -159,8 +167,6 @@ export default function Calendar(props) {
                 method: 'put',
                 data: updateEvent
             };
-            console.log("put");
-            console.log(newEvent);
             const authToken = localStorage.getItem('AuthToken');
             axios.defaults.headers.common = { Authorization: `${authToken}` };
             axios(options)
@@ -169,7 +175,7 @@ export default function Calendar(props) {
                 .catch((error) => {
                     console.log(error);
                 });
-            addLocalEventToCalendar(true);
+            addLocalEventToCalendar(true, undefined);
         };
     }
 
@@ -179,18 +185,17 @@ export default function Calendar(props) {
             const authToken = localStorage.getItem('AuthToken');
             axios.defaults.headers.common = { Authorization: `${authToken}` };
             axios
-			.delete(`event/${newEvent.id}`)
-			.then(() => {
-			})
-			.catch((err) => {
-				console.log(err);
-            });
+                .delete(`event/${newEvent.id}`)
+                .then(() => {
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
             deleteLocalEvent();
         };
     }
 
     function handleChange(e) {
-        console.log('handleChange');
         let value = (e.target.value);
         let name = e.target.name;
         if (e.target.name === "allDay") {
@@ -220,8 +225,10 @@ export default function Calendar(props) {
     }
 
     function handleClassDetails(e) {
-        let detail = ClassInfo.filter(item => {
-            return item.classTitle === e.target.value;
+        let targetId = e.target.options[e.target.selectedIndex].id;
+
+        let detail = classList.filter(item => {
+            return item.id === targetId;
         });
         setnewEvent({
             ...newEvent,
@@ -255,20 +262,19 @@ export default function Calendar(props) {
         axios(options)
             .then((e) => {
                 let responseId = e.data.id
-                console.log("Sent Event");
                 setnewEvent({
                     ...newEvent,
                     id: responseId ? responseId : nanoid(),
                 });
-                addLocalEventToCalendar();
+                addLocalEventToCalendar(false,responseId);
             })
             .catch((error) => {
                 toggleModal();
                 console.log(error);
-            });        
+            });
     }
 
-    function addLocalEventToCalendar(isEdit) {
+    function addLocalEventToCalendar(isEdit, eventId) {
         if (isEdit) {
             deleteLocalEvent();
         }
@@ -276,11 +282,11 @@ export default function Calendar(props) {
             setmodalError("Set A Title")
         }
         else if (newEvent.allDay) {
-            setEvent(oldArray => [...oldArray, { id: newEvent.id, allDay: newEvent.allDay, title: titleText, start: newEvent.start, end: newEvent.end, eventType: newEvent.eventType, classDetails: newEvent.classDetails, backgroundColor: newEvent.classDetails && newEvent.classDetails.color ? newEvent.classDetails.color : " " }]);
+            setEvent(oldArray => [...oldArray, { id: eventId? eventId: newEvent.id, allDay: newEvent.allDay, title: titleText, start: newEvent.start, end: newEvent.end, eventType: newEvent.eventType, classDetails: newEvent.classDetails, backgroundColor: newEvent.classDetails && newEvent.classDetails.data ? newEvent.classDetails.data.color : " " }]);
             toggleModal();
         }
         else {
-            setEvent(oldArray => [...oldArray, { id: newEvent.id, allDay: newEvent.allDay, title: titleText, start: newEvent.start, end: newEvent.end, eventType: newEvent.eventType, classDetails: newEvent.classDetails }]);
+            setEvent(oldArray => [...oldArray, { id: eventId? eventId: newEvent.id, allDay: newEvent.allDay, title: titleText, start: newEvent.start, end: newEvent.end, eventType: newEvent.eventType, classDetails: newEvent.classDetails }]);
             toggleModal();
         }
     }
@@ -289,7 +295,6 @@ export default function Calendar(props) {
         let eventsArr = event.filter(e => {
             return e.id !== newEvent.id;
         });
-        console.log(eventsArr);
         setEvent(eventsArr);
         toggleModal();
     }
@@ -345,13 +350,13 @@ export default function Calendar(props) {
                                     <span className="select">
                                         <select
                                             name="classSelect"
-                                            value={newEvent.classDetails && newEvent.classDetails.classTitle ? newEvent.classDetails.classTitle : " "}
+                                            value={newEvent.classDetails && newEvent.classDetails.data ? newEvent.classDetails.data.classTitle : " "}
                                             onChange={handleClassDetails}
                                         >
-                                            <option>None</option>
+                                            <option id="none-1">None</option>
                                             {
-                                                ClassInfo.map((item, index) => {
-                                                    return (<option key={index}>{item.classTitle}</option>)
+                                                classList && classList.map((item, index) => {
+                                                    return (<option id={item.id} key={index}>{item.data.classTitle}</option>)
                                                 })
                                             }
                                         </select>

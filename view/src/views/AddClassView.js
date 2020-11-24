@@ -70,7 +70,7 @@ export default function AddClassView() {
             classProfessor: currentClass.classProfessor,
             classSchedule: currentClass.classSchedule,
             classZoom: currentClass.classZoom,
-            color: currentClass.color,
+            color: colorChoice,
         };
 
         let options = {
