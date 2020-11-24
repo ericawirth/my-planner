@@ -15,4 +15,5 @@
 3. Run `npm start`
 
 ## Team Sushi Members:
-Sunaly Hatharasinghe, Nicole Mistry, Jeremy Venerella, and Erica Wirth
+[Sunaly Hatharasinghe](https://github.com/Sunaly), [Nicole Mistry](https://github.com/nicmis), [Jeremy Venerella](https://github.com/JeremyVenerella), and [Erica Wirth](https://github.com/ericawirth).
+.
