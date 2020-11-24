@@ -1,8 +1,7 @@
 const { db } = require('../util/admin');
 
 exports.getAllEvents = (request, response) => {
-    db
-        .collection('events')
+    db.collection('events')
         .where('email', '==', request.user.email)
         .get()
         .then((data) => {
@@ -23,8 +22,7 @@ exports.getAllEvents = (request, response) => {
 };
 
 exports.getOneEvent = (request, response) => {
-    db
-        .doc(`/events/${request.params.eventId}`)
+    db.doc(`/events/${request.params.eventId}`)
         .get()
         .then((doc) => {
             if (!doc.exists) {
@@ -66,8 +64,7 @@ exports.postOneEvent = (request, response) => {
         allDay: request.body.allDay,
         createdAt: new Date().toISOString()
     }
-    db
-        .collection('events')
+    db.collection('events')
         .add(newEventItem)
         .then((doc) => {
             const responseEventItem = newEventItem;
