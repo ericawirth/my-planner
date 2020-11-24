@@ -9,6 +9,9 @@ import axios from 'axios';
 import { authMiddleWare } from '../util/auth';
 import { useHistory } from "react-router-dom";
 import ClassList from './ClassList';
+
+const dotenv = require('dotenv');
+dotenv.config();
 /* eslint-disable jsx-a11y/anchor-is-valid */
 let titleText = "";
 export default function Calendar(props) {
@@ -62,6 +65,14 @@ export default function Calendar(props) {
                     localStorage.removeItem('AuthToken');
                     history.push('/login');
                 }
+            })
+            axios
+            .get('https://calendarific.com/api/v2/holidays?&api_key=' + process.env.REACT_APP_HLD_KEY + '&country=US&year=2020')
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error)
             })
             // axios
             // .get('/todos')

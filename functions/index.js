@@ -2,15 +2,18 @@ const app = require('express')();
 const functions = require('firebase-functions');
 const auth = require('./util/auth');
 
+
 const {
     getAllEvents,
     getOneEvent,
     postOneEvent,
     deleteEvent,
     editEvent,
+    getHolidayEvent,
 } = require('./APIs/events')
 
 app.get('/events', auth, getAllEvents);
+app.get('/holidays', auth, getHolidayEvent);
 app.post('/event', auth, postOneEvent);
 app.get('/event/:eventId', auth, getOneEvent);
 app.delete('/event/:eventId', auth, deleteEvent);
