@@ -2,6 +2,8 @@
 
 > My Planner is a website that functions as an academic and life planner for UNC students. Each calendar comes pre-loaded with UNC registrar and academic calendar events. Additionally, each user may create their own personal accounts and access their course to-do lists and calendars.
 
+## Web Application Link:
+
 ## API Documentation:
 
 ## My Planner Features:
